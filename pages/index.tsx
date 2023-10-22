@@ -49,9 +49,9 @@ export default function Home({ attendees = [] }) {
 
         <div className={styles.grid}>
           {attendees.map((attendee) => (
-            <a className={styles.card} href={`/posts/${attendee.id}`} key={attendee.id}>
+            <a className={styles.card} key={attendee.id}>
               <h3>{attendee.name}</h3>
-              <p>{attendee.isAttending}</p>
+              <p>{attendee.food}</p>
             </a>
           ))}
         </div>
