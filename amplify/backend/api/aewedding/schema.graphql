@@ -1,0 +1,20 @@
+type Attendee @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  isAttending: Boolean!
+  food: Food
+  plusOne: PlusOne @hasOne
+}
+
+type PlusOne @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  food: Food!
+}
+
+enum Food {
+  CHICKEN
+  BEEF
+  FISH
+}
+ 

@@ -1,7 +1,36 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import React from 'react';
+// pages/index.js
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify, API, Auth, withSSRContext } from 'aws-amplify';
+import awsExports from '../src/aws-exports';
+import { listAttendees } from '../src/graphql/queries';
+import '@aws-amplify/ui-react/styles.css';
 
-export default function Home() {
+
+Amplify.configure({ ...awsExports, ssr: true });
+
+export async function getServerSideProps({ req }) {
+  const SSR = withSSRContext({ req });
+  
+  try {
+    const response = await SSR.API.graphql({ query: listAttendees, authMode: 'API_KEY' });
+    return {
+      props: {
+        attendees: response.data.listAttendees.items,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      props: {},
+    };
+  }
+}
+
+
+export default function Home({ attendees = [] }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +46,15 @@ export default function Home() {
         <p className={styles.description}>
           November 23, 2024
         </p>
+
+        <div className={styles.grid}>
+          {attendees.map((attendee) => (
+            <a className={styles.card} href={`/posts/${attendee.id}`} key={attendee.id}>
+              <h3>{attendee.name}</h3>
+              <p>{attendee.isAttending}</p>
+            </a>
+          ))}
+        </div>
 
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
