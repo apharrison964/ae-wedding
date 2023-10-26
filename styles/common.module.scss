@@ -1,30 +1,32 @@
 .container {
-  min-height: 100vh;
+  min-height: calc(100vh - 8rem);
   padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  // justify-content: center;
+  // align-items: center;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.banner {
+  height: 4rem;
+  background-color: seagreen;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+.main-grid {
+  display: grid;
 }
 
 .title {
   margin: 0 0 1rem;
   line-height: 1.15;
   font-size: 3.6rem;
+  text-align: center;
+
 }
 
-.title {
+.secondary {
+  margin: 0 0 1rem;
+  line-height: 1.15;
+  font-size: 2.6rem;
   text-align: center;
 }
 
@@ -43,6 +45,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  justify-self: center;
 
   max-width: 800px;
   margin-top: 3rem;
