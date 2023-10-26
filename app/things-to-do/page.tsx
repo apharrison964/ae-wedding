@@ -9,13 +9,13 @@ import '@aws-amplify/ui-react/styles.css';
 
 // Amplify.configure(awsExports);
 
-const OurStory = async () => {
+const ThingsToDo = async () => {
     // const attendeeData = (await API.graphql(graphqlOperation(listAttendees))) as GraphQLResult<ListAttendeesQuery>;
     // const attendees = attendeeData.data?.listAttendees?.items;
     return (
         <>
             <h3 className={styles.secondary}>
-            Our Story
+            Things To Do
             </h3>
 
             {/* <div className={styles.grid}>
@@ -30,4 +30,4 @@ const OurStory = async () => {
     );
 }
 
-export default OurStory;
+export default ThingsToDo;

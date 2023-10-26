@@ -1,7 +1,6 @@
 .container {
   min-height: calc(100vh - 8rem);
   padding: 0 0.5rem;
-  display: grid;
   // justify-content: center;
   // align-items: center;
 }
@@ -12,7 +11,7 @@
 }
 
 .main-grid {
-  display: grid;
+  // display: grid;
 }
 
 .title {
@@ -42,18 +41,16 @@
 
 .grid {
   display: flex;
-  align-items: center;
+  /* width: 100%; */
   justify-content: center;
   flex-wrap: wrap;
   justify-self: center;
-
-  max-width: 800px;
+  /* max-width: 800px; */
   margin-top: 3rem;
 }
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
   padding: 1.5rem;
   text-align: left;
   color: inherit;

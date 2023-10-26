@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import styles from '../styles/common.module.scss';
 import '../styles/global.scss'
 import Footer from './common/footer';
@@ -5,13 +6,9 @@ import NavigationBar from './common/navigation';
 
 
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Allie and Elizbeth',
   description: 'Allie and Elizabeth 2024',
-}
-
-const test = {
-
 }
 
 export default function RootLayout({
