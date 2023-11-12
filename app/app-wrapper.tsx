@@ -24,10 +24,10 @@ export const AppWrapper = ({ children }: { children: ReactNode }) => {
             templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}
             >
               <View columnStart={2} columnEnd={6} row={1} className={styles.justifyCenter}>
-                <View as="h1" fontSize={{ xl: '3rem', large: '2rem', small: '2rem', medium: '2rem', base: '1rem'}} className={styles.title}>ALLIE & ELIZABETH</View>
+                <View as="h1" fontSize={{ xl: '3rem', large: '2rem', small: '1rem', medium: '2rem', base: '1rem'}} className={styles.title}>ALLIE & ELIZABETH</View>
               </View>
               <View columnStart={2} columnEnd={6} row={2}>
-                <View fontSize={{ large: '1.5rem', small: '1.5rem', medium: '1.5rem', base: '0.9rem'}}  className={styles.description}>
+                <View fontSize={{ large: '1.5rem', small: '0.9rem', medium: '1.5rem', base: '0.9rem'}}  className={styles.description}>
                   <View as="p" paddingRight={{base: '1rem'}} className={styles.date}>11 • 23 • 2024</View>
                   <View as="p" paddingLeft={{base: '1rem'}} className={styles.location}>CHAPEL HILL, NC </View>
                 </View>
