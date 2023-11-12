@@ -18,6 +18,58 @@ const Travel = async () => {
             Travel
             </h3>
 
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+
             {/* <div className={styles.grid}>
             {attendees?.map((attendee) => (
                 <a className={styles.card} key={attendee?.id}>

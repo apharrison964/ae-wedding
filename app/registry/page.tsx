@@ -17,6 +17,58 @@ const Registry = async () => {
             <h3 className={styles.secondary}>
             Registry
             </h3>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+            <div>
+                Stuff will go here.
+            </div>
+
 
             {/* <div className={styles.grid}>
             {attendees?.map((attendee) => (

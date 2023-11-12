@@ -1,34 +1,19 @@
 import { Metadata } from 'next';
-import styles from '../styles/common.module.scss';
 import '../styles/global.scss'
-import Footer from './common/footer';
-import NavigationBar from './common/navigation';
+import { AppWrapper } from './app-wrapper';
 
 
 
 export const metadata: Metadata = {
   title: 'Allie and Elizbeth',
-  description: 'Allie and Elizabeth 2024',
+  description: 'Allie and Elizabeth 2024'
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children}: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <div className={`${styles.banner}`}></div>
-          <div className={styles.container}>
-            <main className={styles['main-grid']}>
-              <h1 className={styles.title}>Allie and Elizabeth</h1>
-              <p className={styles.description}>November 23, 2024</p>
-              <NavigationBar />
-              {children}
-            </main>
-          </div>
-        <Footer />
+        <AppWrapper>{children}</AppWrapper>
       </body>
     </html>
   )
