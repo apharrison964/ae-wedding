@@ -1,24 +1,13 @@
 "use client"
 
-import Head from 'next/head';
-import commonStyles from '../styles/common.module.scss';
 import homeStyles from '../styles/home.module.scss';
 import React from 'react';
-import { Amplify, API, graphqlOperation } from 'aws-amplify'
-import awsExports from '../src/aws-exports';
-import { listAttendees } from '../src/graphql/queries';
 import '@aws-amplify/ui-react/styles.css';
-import { ListAttendeesQuery } from '../src/API';
-import { GraphQLResult } from "@aws-amplify/api";
-import { Flex, Image, View, useBreakpointValue } from '@aws-amplify/ui-react';
+import { Image, View } from '@aws-amplify/ui-react';
 import HomeDetails from './home/home-details';
 
-// Amplify.configure(awsExports);
 
 const Home = () => {
-    // const attendeeData = (await API.graphql(graphqlOperation(listAttendees))) as GraphQLResult<ListAttendeesQuery>;
-    // const attendees = attendeeData.data?.listAttendees?.items;
-
     const titleFont = {
         base: '1.25rem',
         small: '1.5rem',
