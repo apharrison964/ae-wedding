@@ -4,6 +4,7 @@ import styles from '../styles/common.module.scss';
 import NavigationDesktop from './common/navigation-desktop';
 import { Grid, Image, View } from '@aws-amplify/ui-react';
 import { ReactNode } from 'react';
+import './global.scss'
 import NavigationMobile from './common/navigation-mobile';
 
 export const AppWrapper = ({ children }: { children: ReactNode }) => {

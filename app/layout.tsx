@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import '../styles/global.scss'
+import './global.scss'
 import { AppWrapper } from './app-wrapper';
 import { Lato } from 'next/font/google'
 

@@ -1,6 +1,5 @@
 .navigation {
     width: 100%;
-    height: 3rem;
 }
 
 .active {
@@ -23,12 +22,11 @@
 
 .navigation ul {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    /* float: right; */
+    text-align: center;
+    align-items: center;
     margin: 0px;
+    justify-content: space-around;
     padding: 0px;
-    overflow: hidden;
 }
 .navigation ul li {
     list-style-type: none;

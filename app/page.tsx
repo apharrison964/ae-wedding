@@ -3,11 +3,14 @@
 import homeStyles from '../styles/home.module.scss';
 import React from 'react';
 import '@aws-amplify/ui-react/styles.css';
-import { Image, View } from '@aws-amplify/ui-react';
+import { Button, Image, View } from '@aws-amplify/ui-react';
 import HomeDetails from './home/home-details';
+import { useRouter } from 'next/navigation';
 
 
 const Home = () => {
+    const router = useRouter();
+
     const titleFont = {
         base: '1.25rem',
         small: '1.5rem',
@@ -50,6 +53,12 @@ const Home = () => {
             <View className={homeStyles.infoContainer}>
                 <HomeDetails></HomeDetails>
             </View>
+            <Button
+                variation="primary"
+                loadingText="Loading, please wait"
+                onClick={() => router.push('/rsvp')}>
+                RSVP
+            </Button>
         </>
     );
 }

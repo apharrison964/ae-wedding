@@ -1,0 +1,22 @@
+.ourStory {
+    text-align: center;
+    &Header {
+        color: #000;
+        font-size: 1.5rem;
+        padding: 2rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        letter-spacing: 0.075rem;
+    }
+
+    &Text {
+        color: #000;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        letter-spacing: 0.05rem;
+        text-align: left;
+    }
+}
