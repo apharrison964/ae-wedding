@@ -69,4 +69,78 @@
   padding-left: 5rem;
 }
 
+.headerDescription {
+  text-align: center;
+  &Header {
+      color: #000;
+      font-size: 1.5rem;
+      padding: 2rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: 0.075rem;
+  }
+
+  &Text {
+      color: #000;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: 0.05rem;
+      text-align: left;
+  }
+}
+
+.infoContainer {
+  margin-top: 3rem;
+
+  &Item {
+      display: flex;
+      flex-wrap: wrap;
+      &  * p {
+        margin: 0;
+      }
+  
+      &Main {
+          display: flex;
+          flex-direction: column;
+          flex-basis: 25rem;
+          color: #000;
+          text-align: center;
+          font-size: 1.5rem;
+          font-style: normal;
+          font-weight: 300;
+          line-height: 2.125rem; /* 141.667% */
+
+          & > .subtitle {
+              color: #000;
+              font-size: 1.25rem;
+              font-style: normal;
+              font-weight: 300;
+              line-height: 2.125rem;
+          }
+      }
+      &Details {
+          display: flex;
+          flex-basis: 25rem;
+          color: #000;
+          font-size: 0.875rem;
+          font-style: normal;
+          font-weight: 300;
+          line-height: normal;
+          letter-spacing: 0.04375rem;
+          padding-left: 4rem;
+      }
+  }
+}
+
+.itemDetail {
+  text-align: left;
+  padding-right: 5rem;
+}
+
+.detailButton {
+  margin: 1rem !important;
+}
 

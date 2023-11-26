@@ -1,10 +1,12 @@
 "use client"
 
 import homeStyles from '../styles/home.module.scss';
+import commonStyles from '../styles/common.module.scss';
+
 import React from 'react';
 import '@aws-amplify/ui-react/styles.css';
 import { Button, Image, View } from '@aws-amplify/ui-react';
-import HomeDetails from './home/home-details';
+import ItemDetails from './common/item-details';
 import { useRouter } from 'next/navigation';
 
 
@@ -32,6 +34,27 @@ const Home = () => {
         large: '1.5rem',
     }
 
+    const details = [
+        {
+         key: 1,
+         title: 'CEREMONY',
+         subtitle1: '3:00 PM - 3:30 PM',
+         description: `Join us as we officially tie the knot under the covered pavilion on Lavender Oaks Farm!`
+        },
+        {
+         key: 2,
+         title: 'COCKTAIL HOUR',
+         subtitle1: '3:30 PM - 4:30 PM',
+         description: `Enjoy beer, wine, and specialty cocktails brought to you by Oliver, Stella, and Daisy! We'll be by the fire, enjoying appetizers and conversation.`
+        },
+        {
+         key: 3,
+         title: 'RECEPTION',
+         subtitle1: '4:30 PM - 10:00 PM',
+         description: `Join us in celebrating our marriage! Dinner, dancing, and a few unique surprises from our venue!`
+        }
+     ]
+
     return (
 
         <>
@@ -50,8 +73,8 @@ const Home = () => {
                 <p>3833 Millard Whitley Rd.</p>
                 <p>Chapel Hill, NC, 27516</p>
             </View>
-            <View className={homeStyles.infoContainer}>
-                <HomeDetails></HomeDetails>
+            <View className={commonStyles.infoContainer}>
+                <ItemDetails details={details}></ItemDetails>
             </View>
             <Button
                 variation="primary"
