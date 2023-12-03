@@ -1,84 +1,58 @@
-import styles from '../../styles/common.module.scss';
+'use client'
+
+import commonStyles from '../../styles/common.module.scss';
 import React from 'react';
-// import { Amplify, API, graphqlOperation } from 'aws-amplify'
-// import awsExports from '../../src/aws-exports';
-// import { listAttendees } from '../../src/graphql/queries';
 import '@aws-amplify/ui-react/styles.css';
-// import { ListAttendeesQuery } from '../../src/API';
-// import { GraphQLResult } from "@aws-amplify/api";
+import { Button, Grid, View } from '@aws-amplify/ui-react';
 
-// Amplify.configure(awsExports);
+const registry = [
+    {
+        key: 1,
+        linkText: 'Williams Sonoma Registry',
+        link: 'https://google.com',
+    },
+    {
+        key: 2,
+        linkText: 'Amazon Registry',
+        link: 'https://google.com',
+    },
+    {
+        key: 3,
+        linkText: 'Target Registry',
+        link: 'https://google.com',
+    },
+    {
+        key: 4,
+        linkText: 'Fancy Plantsy Registry',
+        link: 'https://google.com',
+    }
+ ]
 
-const Registry = async () => {
-    // const attendeeData = (await API.graphql(graphqlOperation(listAttendees))) as GraphQLResult<ListAttendeesQuery>;
-    // const attendees = attendeeData.data?.listAttendees?.items;
+const Registry = () => {
     return (
-        <>
-            <h3 className={styles.secondary}>
-            Registry
-            </h3>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-
-
-            {/* <div className={styles.grid}>
-            {attendees?.map((attendee) => (
-                <a className={styles.card} key={attendee?.id}>
-                <h3>{attendee?.name}</h3>
-                <p>{attendee?.food}</p>
-                </a>
-            ))}
-            </div> */}
-        </>
+        <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
+            <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={1}>
+                <View className={commonStyles.headerDescriptionText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat massa nec volutpat facilisis. Nullam dictum ultrices lacus, vel pretium mi blandit at. Morbi porta tortor non facilisis placerat. Vestibulum aliquam lacus ac rhoncus tristique.</View>
+                <View className={commonStyles.infoContainer}>
+                    <View className={commonStyles.justifyCenter}>
+                    { registry.map(registry => (
+                       <Button
+                            key={registry.key}
+                            width={{ xl: '20rem', large: '20rem', small: '100%', medium: '20rem', base: '100%'}}
+                            marginBottom={{ xl: '2rem', large: '2rem', small: '1rem', medium: '2rem', base: '1rem'}}
+                            marginTop={{ xl: '2rem', large: '2rem', small: '1rem', medium: '2rem', base: '1rem'}}
+                            marginLeft={{ xl: '2rem', large: '2rem', small: '0', medium: '2rem', base: '0'}}
+                            marginRight={{ xl: '2rem', large: '2rem', small: '0', medium: '2rem', base: '0'}}
+                            variation="primary"
+                            loadingText="Loading, please wait"
+                            onClick={() => window.open(registry.link, '_blank')}>
+                            { registry.linkText }
+                        </Button> 
+                    ))}
+                    </View>
+                </View>
+            </View>
+        </Grid>
     );
 }
 
