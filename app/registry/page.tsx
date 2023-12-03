@@ -34,17 +34,18 @@ const Registry = () => {
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={1}>
                 <View className={commonStyles.headerDescriptionText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat massa nec volutpat facilisis. Nullam dictum ultrices lacus, vel pretium mi blandit at. Morbi porta tortor non facilisis placerat. Vestibulum aliquam lacus ac rhoncus tristique.</View>
                 <View className={commonStyles.infoContainer}>
-                    <View className={commonStyles.justifyCenter}>
+                    <View className={commonStyles.justifyContentCenter}>
                     { registry.map(registry => (
                        <Button
                             key={registry.key}
-                            width={{ xl: '20rem', large: '20rem', small: '100%', medium: '20rem', base: '100%'}}
-                            marginBottom={{ xl: '2rem', large: '2rem', small: '1rem', medium: '2rem', base: '1rem'}}
-                            marginTop={{ xl: '2rem', large: '2rem', small: '1rem', medium: '2rem', base: '1rem'}}
+                            // minWidth={'20rem'}
+                            minWidth={{ xl: '20rem', large: '20rem', small: '20rem', medium: '20rem', base: '5rem'}}
+                            marginBottom={{ xl: '2rem', large: '2rem', small: '2rem', medium: '2rem', base: '1rem'}}
+                            marginTop={{ xl: '2rem', large: '2rem', small: '2rem', medium: '2rem', base: '1rem'}}
                             marginLeft={{ xl: '2rem', large: '2rem', small: '0', medium: '2rem', base: '0'}}
                             marginRight={{ xl: '2rem', large: '2rem', small: '0', medium: '2rem', base: '0'}}
+                            textAlign={'center'}
                             variation="primary"
-                            loadingText="Loading, please wait"
                             onClick={() => window.open(registry.link, '_blank')}>
                             { registry.linkText }
                         </Button> 

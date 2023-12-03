@@ -28,10 +28,15 @@
     letter-spacing: 0.075rem;
   }
   &Icon {
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    flex: 1
   }
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  &Right {
+    flex: 1
+  }
+  display: flex;
   height: 3rem;
 }
 
@@ -56,7 +61,7 @@
   line-height: normal;
 }
 
-.justifyCenter {
+.justifySelfCenter {
   justify-self: center;
 }
 
@@ -163,7 +168,7 @@
   margin: 2rem !important;
 }
 
-.justifyCenter {
+.justifyContentCenter {
   justify-content: center;
 }
 

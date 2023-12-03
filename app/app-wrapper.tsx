@@ -6,23 +6,30 @@ import { Grid, Image, View } from '@aws-amplify/ui-react';
 import { ReactNode } from 'react';
 import './global.scss'
 import NavigationMobile from './common/navigation-mobile';
+import { usePathname } from 'next/navigation';
+import { routes } from './content/routes';
 
 export const AppWrapper = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+  const mobileTitle = routes.find(route => pathname === route.href)?.mobileTitle;
+
   return (
     <>
-        <View className={styles.navMobile} display={{small: 'grid', large: 'none'}}>
+        <View className={styles.navMobile} display={{small: 'flex', large: 'none'}}>
             <View className={styles.navMobileIcon}>
                 <NavigationMobile></NavigationMobile>
             </View>
             <div className={styles.navMobileTitle}>
-                A & E
+                { mobileTitle ? mobileTitle : 'A & E' }
+            </div>
+            <div className={styles.navMobileRight}>
             </div>
         </View>
         <div id='portal'></div>
         <Image className={`${styles.banner}`} src="lvtop.svg" alt="Lavender Banner Top"/>
         <main className={styles.main}>
           <Grid templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
-              <View columnStart={1} columnEnd={-1} row={1} className={styles.justifyCenter}>
+              <View columnStart={1} columnEnd={-1} row={1} className={styles.justifySelfCenter}>
                 <View as="h1" fontSize={{ xl: '3rem', large: '3rem', small: '3rem', medium: '3rem', base: '1.25rem'}} className={styles.title}>ALLIE & ELIZABETH</View>
               </View>
               <View columnStart={1} columnEnd={-1} row={2}>
