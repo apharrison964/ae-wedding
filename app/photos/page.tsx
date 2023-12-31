@@ -3,7 +3,6 @@ import React from 'react';
 // import { Amplify, API, graphqlOperation } from 'aws-amplify'
 // import awsExports from '../../src/aws-exports';
 // import { listAttendees } from '../../src/graphql/queries';
-import '@aws-amplify/ui-react/styles.css';
 // import { ListAttendeesQuery } from '../../src/API';
 // import { GraphQLResult } from "@aws-amplify/api";
 

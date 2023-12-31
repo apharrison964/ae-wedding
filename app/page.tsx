@@ -4,7 +4,6 @@ import homeStyles from '../styles/home.module.scss';
 import commonStyles from '../styles/common.module.scss';
 
 import React from 'react';
-import '@aws-amplify/ui-react/styles.css';
 import { Button, Image, View } from '@aws-amplify/ui-react';
 import ItemDetails from './common/item-details';
 import { useRouter } from 'next/navigation';

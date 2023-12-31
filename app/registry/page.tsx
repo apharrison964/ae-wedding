@@ -2,7 +2,6 @@
 
 import commonStyles from '../../styles/common.module.scss';
 import React from 'react';
-import '@aws-amplify/ui-react/styles.css';
 import { Button, Grid, View } from '@aws-amplify/ui-react';
 
 const registry = [

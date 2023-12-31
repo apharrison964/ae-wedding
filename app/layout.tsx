@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import './global.scss'
+import '@aws-amplify/ui-react/styles.css';
 import { AppWrapper } from './app-wrapper';
 import { Lato } from 'next/font/google'
 
@@ -12,7 +13,7 @@ const lato = Lato({
 })
 
 export const metadata: Metadata = {
-  title: 'Allie and Elizbeth',
+  title: 'Allie and Elizabeth',
   description: 'Allie and Elizabeth 2024'
 }
 
