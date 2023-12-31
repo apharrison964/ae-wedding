@@ -14,59 +14,8 @@ const Photos = async () => {
     return (
         <>
             <h3 className={styles.secondary}>
-            Photos
+            Photos - Coming Soon!
             </h3>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
-            <div>
-                Stuff will go here.
-            </div>
 
             {/* <div className={styles.grid}>
             {attendees?.map((attendee) => (
