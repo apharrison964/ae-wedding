@@ -58,6 +58,7 @@ const Home = () => {
 
         <>
            <Image
+                fetchPriority='high'
                 src="ae.svg"
                 alt="Main pic"
             />
