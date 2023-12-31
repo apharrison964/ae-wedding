@@ -31,7 +31,7 @@ const Registry = () => {
     return (
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={1}>
-                <View className={commonStyles.headerDescriptionText}>The best gift is your presence at our wedding, however we are registered at Target and Crate and Barrel if you would like to purchase something. We are also including links to donate to Meow House (where we got our cats) and the Ulman Foundation (our favorite young adult cancer organization)</View>
+                <View className={commonStyles.headerDescriptionText}>The best gift is your presence at our wedding, however we are registered at Target and Crate and Barrel if you would like to purchase something. We are also including links to donate to Meow House (where we got our cats) and the Ulman Foundation (our favorite young adult cancer organization).</View>
                 <View className={commonStyles.infoContainer}>
                     <View className={commonStyles.justifyContentCenter}>
                     { registry.map(registry => (
