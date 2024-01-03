@@ -2,7 +2,11 @@ import { Metadata } from 'next';
 import './global.scss'
 import '@aws-amplify/ui-react/styles.css';
 import { AppWrapper } from './app-wrapper';
-import { Lato } from 'next/font/google'
+import { Lato } from 'next/font/google';
+import { Amplify } from 'aws-amplify';
+import amplifyconfig from '../src/amplifyconfiguration.json';
+
+Amplify.configure(amplifyconfig);
 
 
 const lato = Lato({
