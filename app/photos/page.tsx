@@ -55,7 +55,7 @@ const Photos = () => {
         <>
         <Grid templateColumns={{ xl: '1fr 1fr 1fr', large: '1fr 1fr 1fr', small: '1fr', medium: '1fr', base: '1fr'}} gap='1rem' templateRows={{xl: 'repeat(auto-fit, 18rem)', large: 'repeat(auto-fit, 18rem)'}}>
             { photoList?.map(photo => (
-                <StorageImage onClick={() => { setShowOverlay(!showOverlay); setPhoto(photo)}} objectFit={'cover'} objectPosition={'40% 30%'} width={'100%'} height={'100%'} key={photo.key} alt={photo.metadata?.alt} imgKey={photo.key} accessLevel="guest" />
+                <StorageImage onClick={() => { setShowOverlay(!showOverlay); setPhoto(photo)}} objectFit={{ xl: 'cover', large: 'cover', medium: 'cover', small: 'contain', base: 'contain'}} objectPosition={{ xl: '40% 30%', large: '40% 30%'}} width={{ xl: '100%', large: '100%'}} height={{ xl: '100%', large: '100%'}} key={photo.key} alt={photo.metadata?.alt} imgKey={photo.key} accessLevel="guest" />
             ))}
         </Grid>
         {showOverlay && <PhotoOverlay photo={photo} onClick={() => setShowOverlay(!showOverlay)}></PhotoOverlay>}
