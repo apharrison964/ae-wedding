@@ -42,16 +42,21 @@ const faqs = [
     },
     {
         key: 8,
+        question: 'Can I bring a plus one?',
+        answer: 'If stated on the invite, you may bring a plus one. Otherwise, we are not allowing additional people to attend.',
+    },
+    {
+        key: 9,
         question: 'Am I allowed to take photos at the wedding?',
         answer: 'Photos are welcome, but please refrain from taking pictures during the actual ceremony - we want the photographers to be able to capture the moment as best as they can!',
     },
     {
-        key: 9,
+        key: 10,
         question: 'What is your wedding hashtag?',
         answer: '#HappilyEverHarrison',
     },
     {
-        key: 10,
+        key: 11,
         question: 'I have a question not listed, who do I contact?',
         answer: 'Feel free to contact eaharrisonwedding2024@gmail.com for anything not listed here.',
     }
