@@ -17,11 +17,16 @@ const registry = [
     },
     {
         key: 3,
+        linkText: 'Williams Sonoma Registry',
+        link: 'https://www.williams-sonoma.com/registry/mmh9rzwv9q/registry-list.html',
+    },
+    {
+        key: 4,
         linkText: 'Donate - Meow House Cat Rescue',
         link: 'https://www.meowhousecatrescue.com/donateshop.html',
     },
     {
-        key: 4,
+        key: 5,
         linkText: 'Donate - Ulman Foundation',
         link: 'https://impact.ulmanfoundation.org/fundraiser/5152364',
     }
