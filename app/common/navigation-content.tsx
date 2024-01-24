@@ -5,16 +5,17 @@ import styles from '../../styles/navigation.module.scss';
 import { usePathname } from 'next/navigation';
 import { routes } from '../content/routes';
 
-const NavigationDesktop = () => {
+export default function NavigationContent({onClick, styleType}) {
+  
     const pathname = usePathname();
-    
     return (
-        <div className={styles.navigation}>
+        <div className={styles[styleType]}>
             <div>
                 <ul>
                     {routes.map((route) => (
+                        !route.disabled && 
                         <li key={route.key}>
-                            <Link href={route.href}>
+                             <Link onClick={onClick} href={route.href}>
                                 <p className={pathname === route.href ? styles.active : styles.inactive}>{ route.title }</p>
                             </Link>
                         </li>
@@ -23,6 +24,4 @@ const NavigationDesktop = () => {
             </div>
         </div>
     )
-}
-
-export default NavigationDesktop;
+  } 

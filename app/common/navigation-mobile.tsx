@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import NavigationModalContent from "./navigation-modal-content";
 import { createPortal } from "react-dom";
+import NavigationContent from "./navigation-content";
 
 
 export default function NavigationMobile(){
@@ -13,7 +13,7 @@ export default function NavigationMobile(){
     return(
         <>
             <img onClick={() => setOpen(!open) } src="hamburger.svg" alt="Hamburger Menu"/>
-            {open && mounted && createPortal(<h1 className="overlay"><NavigationModalContent onClick={() => setOpen(!open)}></NavigationModalContent></h1>, document.getElementById("portal"))}
+            {open && mounted && createPortal(<h1 className="overlay"><NavigationContent styleType={'navigationMobile'} onClick={() => setOpen(!open)}></NavigationContent></h1>, document.getElementById("portal"))}
         </>
     )
 }

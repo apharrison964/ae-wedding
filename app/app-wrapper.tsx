@@ -1,7 +1,6 @@
 "use client"
 
 import styles from '../styles/common.module.scss';
-import NavigationDesktop from './common/navigation-desktop';
 import { Grid, View } from '@aws-amplify/ui-react';
 import { ReactNode } from 'react';
 import './global.scss'
@@ -9,6 +8,7 @@ import NavigationMobile from './common/navigation-mobile';
 import { usePathname } from 'next/navigation';
 import { routes } from './content/routes';
 import Image from 'next/image';
+import NavigationContent from './common/navigation-content';
 
 export const AppWrapper = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
@@ -40,7 +40,7 @@ export const AppWrapper = ({ children }: { children: ReactNode }) => {
                 </View>
               </View>
               <View columnStart={2} columnEnd={6} row={3} display={{small: 'none', large: 'grid', base: 'none'}}>
-                <NavigationDesktop />
+                <NavigationContent styleType={'navigation'} onClick={null}></NavigationContent>
               </View>
               <View columnStart={2} columnEnd={6} row={4} className={styles.children}>
                 {children}

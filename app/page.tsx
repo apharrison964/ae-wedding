@@ -7,10 +7,12 @@ import React from 'react';
 import { Button, Image, View } from '@aws-amplify/ui-react';
 import ItemDetails from './common/item-details';
 import { useRouter } from 'next/navigation';
+import { routes } from './content/routes';
 
 
 const Home = () => {
     const router = useRouter();
+    
 
     const titleFont = {
         base: '1.25rem',
@@ -76,12 +78,16 @@ const Home = () => {
             <View className={commonStyles.infoContainer}>
                 <ItemDetails details={details}></ItemDetails>
             </View>
-            <Button
-                variation="primary"
-                loadingText="Loading, please wait"
-                onClick={() => router.push('/rsvp')}>
-                RSVP
-            </Button>
+            {
+                !routes.find(route => 'RSVP' === route.title)?.disabled && 
+                <Button
+                    variation="primary"
+                    loadingText="Loading, please wait"
+                    onClick={() => router.push('/rsvp')}>
+                    RSVP
+                </Button>
+
+            }
         </>
     );
 }
