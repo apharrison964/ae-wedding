@@ -2,12 +2,13 @@
 
 import styles from '../styles/common.module.scss';
 import NavigationDesktop from './common/navigation-desktop';
-import { Grid, Image, View } from '@aws-amplify/ui-react';
+import { Grid, View } from '@aws-amplify/ui-react';
 import { ReactNode } from 'react';
 import './global.scss'
 import NavigationMobile from './common/navigation-mobile';
 import { usePathname } from 'next/navigation';
 import { routes } from './content/routes';
+import Image from 'next/image';
 
 export const AppWrapper = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
@@ -26,7 +27,7 @@ export const AppWrapper = ({ children }: { children: ReactNode }) => {
             </div>
         </View>
         <div id='portal'></div>
-        <Image className={`${styles.banner}`} src="lvtop.svg" alt="Lavender Banner Top"/>
+        <Image className={`${styles.banner}`} priority={true} width='100' height='100' src="lvtop.svg" alt="Lavender Banner Top"/>
         <main className={styles.main}>
           <Grid templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
               <View columnStart={1} columnEnd={-1} row={1} className={styles.justifySelfCenter}>
@@ -46,7 +47,7 @@ export const AppWrapper = ({ children }: { children: ReactNode }) => {
               </View>
           </Grid>
         </main>
-        <Image className={`${styles.banner}`} src="lvbottom.svg" alt="Lavender Banner Bottom"/>
+        <Image className={`${styles.banner}`} priority={true} width='100' height='100' src="lvbottom.svg" alt="Lavender Banner Bottom"/>
     </>
   )
 }
