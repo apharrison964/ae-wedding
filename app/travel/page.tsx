@@ -12,8 +12,8 @@ const details = [
         subtitle1: '3690 S Columbia St',
         subtitle2: 'Chapel Hill, NC 27517',
         linkText: 'Visit website',
-        link: 'https://www.hyatt.com/en-US/hotel/north-carolina/hyatt-place-chapel-hill-southern-village/rduzc?corp_id=G-QHWD',
-        description: `The Hyatt Place Chapel Hill/Southern Village hotel is a quick walk from Southern Village, where there are many amenities.`
+        link: 'https://www.hyatt.com/shop/rooms/rduzc?location=Hyatt%20Place%20Chapel%20Hill%20%2F%20Southern%20Village&checkinDate=2024-11-22&checkoutDate=2024-11-24&rooms=1&adults=1&kids=0&corp_id=G-QHWD',
+        description: `The Hyatt Place Chapel Hill/Southern Village hotel is a quick walk from Southern Village, where there are many amenities. We have our block from November 22nd to November 24th.`
     }
  ]
 

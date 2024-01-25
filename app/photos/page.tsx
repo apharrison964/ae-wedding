@@ -8,7 +8,7 @@ import { Grid } from '@aws-amplify/ui-react';
 import React, { useEffect, useState } from 'react';
 import { StorageImage } from '@aws-amplify/ui-react-storage';
 import { GetPropertiesOutput, ListAllOutput, getProperties, list } from 'aws-amplify/storage';
-import PhotoOverlay from './photo-overlay';
+// import PhotoOverlay from './photo-overlay';
 
 
 
@@ -37,8 +37,8 @@ const getMetadata = async () => {
 
 const Photos = () => {
     const [photoList, setPhotoList] = useState<GetPropertiesOutput[]>();
-    const [photo, setPhoto] = useState<GetPropertiesOutput>();
-    const [showOverlay, setShowOverlay] = useState(false);
+    // const [photo, setPhoto] = useState<GetPropertiesOutput>();
+    // const [showOverlay, setShowOverlay] = useState(false);
 
     useEffect(() => {
         async function getItems() {
@@ -55,7 +55,8 @@ const Photos = () => {
         <>
         <Grid templateColumns={{ xl: '1fr 1fr 1fr', large: '1fr 1fr 1fr', small: '1fr', medium: '1fr', base: '1fr'}} gap='1rem' templateRows={{xl: 'repeat(auto-fit, 18rem)', large: 'repeat(auto-fit, 18rem)'}}>
             { photoList?.map((photo) => (
-                <StorageImage onClick={() => { setShowOverlay(!showOverlay); setPhoto(photo)}} 
+                <StorageImage 
+                    // onClick={() => { setShowOverlay(!showOverlay); setPhoto(photo)}} 
                     objectFit={{ xl: 'cover', large: 'cover', medium: 'cover', small: 'contain', base: 'contain'}} 
                     objectPosition={{ xl: '40% 30%', large: '40% 30%'}} width={{ xl: '100%', large: '100%'}} 
                     height={{ xl: '100%', large: '100%'}} 
@@ -66,7 +67,7 @@ const Photos = () => {
                     accessLevel="guest" />
             ))}
         </Grid>
-        {showOverlay && <PhotoOverlay photo={photo} photoList={photoList} updatePhoto={(newPhoto) => setPhoto(newPhoto)} onClick={() => setShowOverlay(!showOverlay)}></PhotoOverlay>}
+        {/* {showOverlay && <PhotoOverlay photo={photo} photoList={photoList} updatePhoto={(newPhoto) => setPhoto(newPhoto)} onClick={() => setShowOverlay(!showOverlay)}></PhotoOverlay>} */}
         </>
     );
 }

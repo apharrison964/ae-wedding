@@ -10,22 +10,26 @@ const WeddingParty = () => {
         {
             key: 1,
             name: 'Olivia Harrison',
-            image: 'party.svg'
+            description: 'Allie\'s sister',
+            image: 'olivia.png'
         },
         {
             key: 2,
             name: 'Thomas Quinn',
-            image: 'party.svg'
+            description: 'Elizabeth\'s brother',
+            image: 'thomas.png'
         },
         {
             key: 3,
-            name: 'Suenia De Avezedo',
-            image: 'party.svg'
+            name: 'Suenia de Azevedo',
+            description: 'Allie\'s sister-in-law',
+            image: 'suenia.png'
         },
         {
             key: 4,
             name: 'Jack Harrison',
-            image: 'party.svg'
+            description: 'Allie\'s brother',
+            image: 'jack.png'
         }
     ]
     return (
@@ -34,13 +38,16 @@ const WeddingParty = () => {
                 { weddingParty.map(party => (
                     <Grid templateColumns={{ xl: '1fr 1fr', large: '1fr 1fr', small: '1fr', medium: '1fr', base: '1fr'}} key={party.key} className={`${commonStyles.infoContainer} ${partyStyles.gap}`}>
                         <Image
-                        marginRight={{ xl: '3rem', large: '3rem'}}
+                            marginRight={{ xl: '3rem', large: '3rem'}}
+                            width={'192px'}
+                            height={'192px'}
                             src={party.image}
                             alt={party.name}
                             />
-                        <View className={partyStyles.personInfo}>
+                        <Grid className={partyStyles.personInfo} gap={{base: '1rem'}}>
                             <View className={partyStyles.name}>{party.name}</View>
-                        </View>
+                            <View className={partyStyles.description}>{party.description}</View>
+                        </Grid>
                     </Grid>
                 ))}
             </View>

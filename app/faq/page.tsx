@@ -8,7 +8,7 @@ const faqs = [
     {
         key: 1,
         question: 'What date should I RSVP by?',
-        answer: 'Check back soon!',
+        answer: 'We will be sending out official invitations this summer - please respond no later than October 1st!',
     },
     {
         key: 2,
