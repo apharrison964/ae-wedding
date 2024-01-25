@@ -39,19 +39,19 @@ const Home = () => {
         {
          key: 1,
          title: 'CEREMONY',
-         subtitle1: '3:00 PM - 3:30 PM',
+         subtitle1: '3:30 PM - 4:00 PM',
          description: `Join us as we officially tie the knot under the covered pavilion on Lavender Oaks Farm!`
         },
         {
          key: 2,
          title: 'COCKTAIL HOUR',
-         subtitle1: '3:30 PM - 4:30 PM',
+         subtitle1: '4:00 PM - 5:00 PM',
          description: `Enjoy beer, wine, and specialty cocktails brought to you by Oliver, Stella, and Daisy! We'll be by the fire, enjoying appetizers and conversation.`
         },
         {
          key: 3,
          title: 'RECEPTION',
-         subtitle1: '4:30 PM - 10:00 PM',
+         subtitle1: '5:00 PM - 10:00 PM',
          description: `Join us in celebrating our marriage! Dinner, dancing, and a few unique surprises from our venue!`
         }
      ]
@@ -68,7 +68,7 @@ const Home = () => {
             <View as="h2" fontSize={titleFont} className={homeStyles.title}>WEDDING DAY</View>
             <View fontSize={detailsFont} className={homeStyles.details}>
                 <p>NOVEMBER 23, 2024</p>
-                <p>3:00 PM - 10:00 PM</p>
+                <p>3:30 PM - 10:00 PM</p>
             </View>
             <View fontSize={locationFont} className={homeStyles.location}>
                 <p>Lavender Oaks Farm</p>
