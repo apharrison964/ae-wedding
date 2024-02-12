@@ -35,16 +35,16 @@ const faqs = [
         question: 'What is the dress code?',
         answer: 'The dress code is cocktail attire.',
     },
-    {
-        key: 7,
-        question: 'Are children allowed?',
-        answer: 'Yes, children are allowed! We will be sending out invitations that include children, but if there are others you want to invite, please email eaharrisonwedding2024@gmail.com to discuss more. We will have a kid friendly menu.',
-    },
-    {
-        key: 8,
-        question: 'Can I bring a plus one?',
-        answer: 'If stated on the invite, you may bring a plus one. Otherwise, we are not allowing additional people to attend.',
-    },
+    // {
+    //     key: 7,
+    //     question: 'Are children allowed?',
+    //     answer: 'Yes, children are allowed! We will be sending out invitations that include children, but if there are others you want to invite, please email eaharrisonwedding2024@gmail.com to discuss more. We will have a kid friendly menu.',
+    // },
+    // {
+    //     key: 8,
+    //     question: 'Can I bring a plus one?',
+    //     answer: 'If stated on the invite, you may bring a plus one. Otherwise, we are not allowing additional people to attend.',
+    // },
     {
         key: 9,
         question: 'Am I allowed to take photos at the wedding?',
