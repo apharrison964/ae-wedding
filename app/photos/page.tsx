@@ -39,6 +39,7 @@ const Photos = () => {
     const [photoList, setPhotoList] = useState<GetPropertiesOutput[]>();
     // const [photo, setPhoto] = useState<GetPropertiesOutput>();
     // const [showOverlay, setShowOverlay] = useState(false);
+    const repeat = photoList ? photoList.length / 3 : 6;
 
     useEffect(() => {
         async function getItems() {
@@ -53,7 +54,7 @@ const Photos = () => {
 
     return (
         <>
-        <Grid templateColumns={{ xl: '1fr 1fr 1fr', large: '1fr 1fr 1fr', small: '1fr', medium: '1fr', base: '1fr'}} gap='1rem' templateRows={{xl: 'repeat(auto-fit, 18rem)', large: 'repeat(auto-fit, 18rem)'}}>
+        <Grid templateColumns={{ xl: '1fr 1fr 1fr', large: '1fr 1fr 1fr', small: '1fr', medium: '1fr', base: '1fr'}} gap='1rem' templateRows={{xl: `repeat(${repeat}, 18rem)`, large: 'repeat(auto-fit, 18rem)'}}>
             { photoList?.map((photo) => (
                 <StorageImage 
                     // onClick={() => { setShowOverlay(!showOverlay); setPhoto(photo)}} 
