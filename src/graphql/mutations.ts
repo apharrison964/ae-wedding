@@ -14,18 +14,20 @@ export const createAttendee = /* GraphQL */ `mutation CreateAttendee(
 ) {
   createAttendee(input: $input, condition: $condition) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -39,18 +41,20 @@ export const updateAttendee = /* GraphQL */ `mutation UpdateAttendee(
 ) {
   updateAttendee(input: $input, condition: $condition) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -64,18 +68,20 @@ export const deleteAttendee = /* GraphQL */ `mutation DeleteAttendee(
 ) {
   deleteAttendee(input: $input, condition: $condition) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -89,12 +95,8 @@ export const createPlusOne = /* GraphQL */ `mutation CreatePlusOne(
 ) {
   createPlusOne(input: $input, condition: $condition) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename
@@ -110,12 +112,8 @@ export const updatePlusOne = /* GraphQL */ `mutation UpdatePlusOne(
 ) {
   updatePlusOne(input: $input, condition: $condition) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename
@@ -131,12 +129,8 @@ export const deletePlusOne = /* GraphQL */ `mutation DeletePlusOne(
 ) {
   deletePlusOne(input: $input, condition: $condition) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename

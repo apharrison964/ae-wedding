@@ -11,18 +11,20 @@ type GeneratedQuery<InputType, OutputType> = string & {
 export const getAttendee = /* GraphQL */ `query GetAttendee($id: ID!) {
   getAttendee(id: $id) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -38,14 +40,12 @@ export const listAttendees = /* GraphQL */ `query ListAttendees(
   listAttendees(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      firstName
+      name
       isAttending
       food
-      lastName
-      notes
-      relatedAttendees
       createdAt
       updatedAt
+      attendeePlusOneId
       __typename
     }
     nextToken
@@ -59,12 +59,8 @@ export const listAttendees = /* GraphQL */ `query ListAttendees(
 export const getPlusOne = /* GraphQL */ `query GetPlusOne($id: ID!) {
   getPlusOne(id: $id) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename
@@ -82,12 +78,8 @@ export const listPlusOnes = /* GraphQL */ `query ListPlusOnes(
   listPlusOnes(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      firstName
+      name
       food
-      attendeeID
-      lastName
-      isAttending
-      notes
       createdAt
       updatedAt
       __typename
@@ -99,38 +91,4 @@ export const listPlusOnes = /* GraphQL */ `query ListPlusOnes(
 ` as GeneratedQuery<
   APITypes.ListPlusOnesQueryVariables,
   APITypes.ListPlusOnesQuery
->;
-export const plusOnesByAttendeeID = /* GraphQL */ `query PlusOnesByAttendeeID(
-  $attendeeID: ID!
-  $sortDirection: ModelSortDirection
-  $filter: ModelPlusOneFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  plusOnesByAttendeeID(
-    attendeeID: $attendeeID
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      firstName
-      food
-      attendeeID
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.PlusOnesByAttendeeIDQueryVariables,
-  APITypes.PlusOnesByAttendeeIDQuery
 >;

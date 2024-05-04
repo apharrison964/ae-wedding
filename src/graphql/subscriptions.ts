@@ -11,18 +11,20 @@ type GeneratedSubscription<InputType, OutputType> = string & {
 export const onCreateAttendee = /* GraphQL */ `subscription OnCreateAttendee($filter: ModelSubscriptionAttendeeFilterInput) {
   onCreateAttendee(filter: $filter) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -33,18 +35,20 @@ export const onCreateAttendee = /* GraphQL */ `subscription OnCreateAttendee($fi
 export const onUpdateAttendee = /* GraphQL */ `subscription OnUpdateAttendee($filter: ModelSubscriptionAttendeeFilterInput) {
   onUpdateAttendee(filter: $filter) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -55,18 +59,20 @@ export const onUpdateAttendee = /* GraphQL */ `subscription OnUpdateAttendee($fi
 export const onDeleteAttendee = /* GraphQL */ `subscription OnDeleteAttendee($filter: ModelSubscriptionAttendeeFilterInput) {
   onDeleteAttendee(filter: $filter) {
     id
-    firstName
+    name
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      name
+      food
+      createdAt
+      updatedAt
       __typename
     }
-    lastName
-    notes
-    relatedAttendees
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -77,12 +83,8 @@ export const onDeleteAttendee = /* GraphQL */ `subscription OnDeleteAttendee($fi
 export const onCreatePlusOne = /* GraphQL */ `subscription OnCreatePlusOne($filter: ModelSubscriptionPlusOneFilterInput) {
   onCreatePlusOne(filter: $filter) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename
@@ -95,12 +97,8 @@ export const onCreatePlusOne = /* GraphQL */ `subscription OnCreatePlusOne($filt
 export const onUpdatePlusOne = /* GraphQL */ `subscription OnUpdatePlusOne($filter: ModelSubscriptionPlusOneFilterInput) {
   onUpdatePlusOne(filter: $filter) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename
@@ -113,12 +111,8 @@ export const onUpdatePlusOne = /* GraphQL */ `subscription OnUpdatePlusOne($filt
 export const onDeletePlusOne = /* GraphQL */ `subscription OnDeletePlusOne($filter: ModelSubscriptionPlusOneFilterInput) {
   onDeletePlusOne(filter: $filter) {
     id
-    firstName
+    name
     food
-    attendeeID
-    lastName
-    isAttending
-    notes
     createdAt
     updatedAt
     __typename

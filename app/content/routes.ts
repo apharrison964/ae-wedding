@@ -53,7 +53,7 @@ export const routes = [
         title: 'RSVP',
         mobileTitle: 'RSVP',
         href: '/rsvp',
-        disabled: false
+        disabled: true
     },
     {
         key: 9,
