@@ -1,4 +1,25 @@
 {
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aewedding-main-311b8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::064658596848:role/amplify-aewedding-main-311b8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::064658596848:role/amplify-aewedding-main-311b8-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-aewedding-main-311b8-deployment",
+      "UnauthRoleName": "amplify-aewedding-main-311b8-unauthRole",
+      "StackName": "amplify-aewedding-main-311b8",
+      "StackId": "arn:aws:cloudformation:us-east-1:064658596848:stack/amplify-aewedding-main-311b8/505a87f0-0a4b-11ef-9bb1-0e6574b65645",
+      "AmplifyAppId": "d2tx0kymr1l1mc"
+    },
+    "categories": {
+      "auth": {
+        "aewedding": {}
+      },
+      "storage": {
+        "s3aeweddingstorage4758768e": {}
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplifyd21664dfa2c84-staging-201945-authRole",
@@ -17,6 +38,9 @@
       },
       "auth": {
         "aewedding": {}
+      },
+      "storage": {
+        "s3aeweddingstorage4758768e": {}
       }
     }
   }
