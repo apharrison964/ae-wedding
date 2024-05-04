@@ -1,7 +1,14 @@
 import styles from '../../styles/common.module.scss';
 import React from 'react';
+import { generateClient } from 'aws-amplify/api';
+import { getAttendee, listAttendees } from '../../src/graphql/queries'
+
+const client = generateClient();
 
 const RSVP = async () => {
+    console.log('I AM IN HERE??')
+    const result = await client.graphql({ query: listAttendees });
+    console.log('RESULT', result);
     return (
         <>
             <h3 className={styles.secondary}>

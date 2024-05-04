@@ -5,9 +5,9 @@ import { AppWrapper } from './app-wrapper';
 import { Lato } from 'next/font/google';
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from '../src/amplifyconfiguration.json';
+import { studioTheme } from "../src/ui-components";
 
 Amplify.configure(amplifyconfig);
-
 
 const lato = Lato({
   subsets: ['latin'],
