@@ -7,7 +7,7 @@ Amplify.configure(amplifyconfig);
 import { Grid } from '@aws-amplify/ui-react';
 import React, { useEffect, useState } from 'react';
 import { StorageImage } from '@aws-amplify/ui-react-storage';
-import { GetPropertiesOutput, ListAllOutput, getProperties, list } from 'aws-amplify/storage';
+import { GetPropertiesWithPathOutput, ListAllWithPathOutput, getProperties, list } from 'aws-amplify/storage';
 // import PhotoOverlay from './photo-overlay';
 
 
@@ -15,10 +15,11 @@ import { GetPropertiesOutput, ListAllOutput, getProperties, list } from 'aws-amp
 const getList = async () => {
     try {
         const response = await list({
+            path: 'public/',
             options: {
               listAll: true,
             }
-          })
+          });
         return response;
       } catch (error) {
         console.log(error);
@@ -26,17 +27,16 @@ const getList = async () => {
 }
 
 const getMetadata = async () => {
-    const list = await getList() as ListAllOutput;
+    const list = await getList() as ListAllWithPathOutput;
     const withMetadata = await Promise.all(list.items.map(async listItem => {
-        const metadata = await getProperties({ key: listItem.key, options: { accessLevel: 'guest'}});
+        const metadata = await getProperties({ path: listItem.path });
         return metadata;
-    }))
-
+    }));
    return withMetadata;
 }
 
 const Photos = () => {
-    const [photoList, setPhotoList] = useState<GetPropertiesOutput[]>();
+    const [photoList, setPhotoList] = useState<GetPropertiesWithPathOutput[]>();
     // const [photo, setPhoto] = useState<GetPropertiesOutput>();
     // const [showOverlay, setShowOverlay] = useState(false);
     const repeat = photoList ? photoList.length / 3 : 6;
@@ -44,7 +44,7 @@ const Photos = () => {
     useEffect(() => {
         async function getItems() {
           const response = await getMetadata();
-          setPhotoList(response.filter(item => item.key !== ''));
+          setPhotoList(response.filter(item => !item.contentType?.includes('application/x-directory')));
         };
     
         if (!photoList) {
@@ -61,11 +61,11 @@ const Photos = () => {
                     objectFit={{ xl: 'cover', large: 'cover', medium: 'cover', small: 'contain', base: 'contain'}} 
                     objectPosition={{ xl: '40% 30%', large: '40% 30%'}} width={{ xl: '100%', large: '100%'}} 
                     height={{ xl: '100%', large: '100%'}} 
-                    key={photo.key} 
+                    key={photo.path} 
                     alt={photo.metadata?.alt} 
-                    imgKey={photo.key} 
+                    path={photo.path} 
                     fetchPriority='high'
-                    accessLevel="guest" />
+                    />
             ))}
         </Grid>
         {/* {showOverlay && <PhotoOverlay photo={photo} photoList={photoList} updatePhoto={(newPhoto) => setPhoto(newPhoto)} onClick={() => setShowOverlay(!showOverlay)}></PhotoOverlay>} */}
