@@ -75,7 +75,7 @@
 }
 
 .headerDescription {
-  text-align: center;
+  text-align: center !important;
   &Header {
       color: #000;
       font-size: 1.5rem;
@@ -113,7 +113,7 @@
 }
 
 .infoContainer {
-  margin-top: 3rem;
+  margin-top: 3rem !important;
 
   &Item {
       display: flex;
