@@ -22,11 +22,16 @@ const registry = [
     },
     {
         key: 4,
+        linkText: 'Honeymoon and Home Fund',
+        link: 'https://www.honeyfund.com/site/quinn-harrison-11-23-2024',
+    },
+    {
+        key: 5,
         linkText: 'Donate - Meow House Cat Rescue',
         link: 'https://www.meowhousecatrescue.com/donateshop.html',
     },
     {
-        key: 5,
+        key: 6,
         linkText: 'Donate - Ulman Foundation',
         link: 'https://impact.ulmanfoundation.org/fundraiser/5152364',
     }
