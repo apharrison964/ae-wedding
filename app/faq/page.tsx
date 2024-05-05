@@ -64,7 +64,7 @@ const faqs = [
 
 const FAQ = () => {
     return (
-        <Grid className={`${commonStyles.headerDescription} ${commonStyles.headerDescriptionFAQ}`}  templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
+        <Grid className={`${commonStyles.headerDescriptionTemp} ${commonStyles.headerDescriptionFAQ}`}  templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             { faqs.map((faq, index) => (
                 <View key={faq.key} columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={index + 1}>
                     <View className={commonStyles.headerDescriptionSubheader}>{faq.question}</View>

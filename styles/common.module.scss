@@ -74,6 +74,44 @@
   padding-left: 5rem;
 }
 
+.headerDescriptionTemp {
+  text-align: center;
+  &Header {
+      color: #000;
+      font-size: 1.5rem;
+      padding: 2rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: 0.075rem;
+  }
+
+  &Text {
+      color: #000;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: 0.05rem;
+      text-align: left;
+  }
+
+  &Subheader {
+    color: #000;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.0625rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &FAQ {
+    text-align: unset;
+  }
+}
+
 .headerDescription {
   text-align: center !important;
   &Header {
