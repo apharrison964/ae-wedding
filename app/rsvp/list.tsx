@@ -51,7 +51,7 @@ const RSVPList = ({ attendee, relatedAttendees }: AttendeeRelatedProps) => {
                         </Flex>
                         <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                             <Label htmlFor="meal">Meal Selection</Label>
-                            <RadioGroupField id="meal" legendHidden={true} direction="row" legend="Meal Selection" name="meal" onChange={(e) => { relatedAttendee.food = Food[e.target.value]; console.log('what is this', attendeeRelated) }}>
+                            <RadioGroupField id="meal" legendHidden={true} direction="row" legend="Meal Selection" name="meal" onChange={(e) => { relatedAttendee.food = Food[e.target.value] }}>
                                 <Radio value={Food.GRILLED_CHICKEN} checked={relatedAttendee.food === Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
                                 <Radio value={Food.SHRIMP} checked={relatedAttendee.food === Food.SHRIMP}>Shrimp</Radio>
                                 <Radio value={Food.DIETARY_RESTRICTION} checked={relatedAttendee.food === Food.DIETARY_RESTRICTION}>Dietery Restriction</Radio>
