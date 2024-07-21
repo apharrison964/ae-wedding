@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import NavigationContent from "./navigation-content";
 
 
-export default function NavigationMobile(){
+export default function NavigationMobile (){
     const [open, setOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);

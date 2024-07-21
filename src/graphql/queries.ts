@@ -15,14 +15,61 @@ export const getAttendee = /* GraphQL */ `query GetAttendee($id: ID!) {
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      firstName
+      food
+      lastName
+      isAttending
+      notes
+      Attendee {
+        id
+        firstName
+        isAttending
+        food
+        plusOne {
+          id
+          firstName
+          food
+          lastName
+          isAttending
+          notes
+          Attendee {
+            id
+            firstName
+            isAttending
+            food
+            lastName
+            notes
+            relatedAttendee
+            createdAt
+            updatedAt
+            attendeePlusOneId
+            __typename
+          }
+          createdAt
+          updatedAt
+          plusOneAttendeeId
+          __typename
+        }
+        lastName
+        notes
+        relatedAttendee
+        createdAt
+        updatedAt
+        attendeePlusOneId
+        __typename
+      }
+      createdAt
+      updatedAt
+      plusOneAttendeeId
       __typename
     }
     lastName
     notes
-    relatedAttendees
+    relatedAttendee
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -41,11 +88,49 @@ export const listAttendees = /* GraphQL */ `query ListAttendees(
       firstName
       isAttending
       food
+      plusOne {
+        id
+        firstName
+        food
+        lastName
+        isAttending
+        notes
+        Attendee {
+          id
+          firstName
+          isAttending
+          food
+          plusOne {
+            id
+            firstName
+            food
+            lastName
+            isAttending
+            notes
+            createdAt
+            updatedAt
+            plusOneAttendeeId
+            __typename
+          }
+          lastName
+          notes
+          relatedAttendee
+          createdAt
+          updatedAt
+          attendeePlusOneId
+          __typename
+        }
+        createdAt
+        updatedAt
+        plusOneAttendeeId
+        __typename
+      }
       lastName
       notes
-      relatedAttendees
+      relatedAttendee
       createdAt
       updatedAt
+      attendeePlusOneId
       __typename
     }
     nextToken
@@ -61,12 +146,62 @@ export const getPlusOne = /* GraphQL */ `query GetPlusOne($id: ID!) {
     id
     firstName
     food
-    attendeeID
     lastName
     isAttending
     notes
+    Attendee {
+      id
+      firstName
+      isAttending
+      food
+      plusOne {
+        id
+        firstName
+        food
+        lastName
+        isAttending
+        notes
+        Attendee {
+          id
+          firstName
+          isAttending
+          food
+          plusOne {
+            id
+            firstName
+            food
+            lastName
+            isAttending
+            notes
+            createdAt
+            updatedAt
+            plusOneAttendeeId
+            __typename
+          }
+          lastName
+          notes
+          relatedAttendee
+          createdAt
+          updatedAt
+          attendeePlusOneId
+          __typename
+        }
+        createdAt
+        updatedAt
+        plusOneAttendeeId
+        __typename
+      }
+      lastName
+      notes
+      relatedAttendee
+      createdAt
+      updatedAt
+      attendeePlusOneId
+      __typename
+    }
     createdAt
     updatedAt
+    plusOneAttendeeId
     __typename
   }
 }
@@ -84,12 +219,50 @@ export const listPlusOnes = /* GraphQL */ `query ListPlusOnes(
       id
       firstName
       food
-      attendeeID
       lastName
       isAttending
       notes
+      Attendee {
+        id
+        firstName
+        isAttending
+        food
+        plusOne {
+          id
+          firstName
+          food
+          lastName
+          isAttending
+          notes
+          Attendee {
+            id
+            firstName
+            isAttending
+            food
+            lastName
+            notes
+            relatedAttendee
+            createdAt
+            updatedAt
+            attendeePlusOneId
+            __typename
+          }
+          createdAt
+          updatedAt
+          plusOneAttendeeId
+          __typename
+        }
+        lastName
+        notes
+        relatedAttendee
+        createdAt
+        updatedAt
+        attendeePlusOneId
+        __typename
+      }
       createdAt
       updatedAt
+      plusOneAttendeeId
       __typename
     }
     nextToken
@@ -99,38 +272,4 @@ export const listPlusOnes = /* GraphQL */ `query ListPlusOnes(
 ` as GeneratedQuery<
   APITypes.ListPlusOnesQueryVariables,
   APITypes.ListPlusOnesQuery
->;
-export const plusOnesByAttendeeID = /* GraphQL */ `query PlusOnesByAttendeeID(
-  $attendeeID: ID!
-  $sortDirection: ModelSortDirection
-  $filter: ModelPlusOneFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  plusOnesByAttendeeID(
-    attendeeID: $attendeeID
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      firstName
-      food
-      attendeeID
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.PlusOnesByAttendeeIDQueryVariables,
-  APITypes.PlusOnesByAttendeeIDQuery
 >;

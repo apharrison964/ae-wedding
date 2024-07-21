@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -27,7 +27,8 @@ export declare type AttendeeCreateFormInputValues = {
     food?: string;
     lastName?: string;
     notes?: string;
-    relatedAttendees?: string[];
+    relatedAttendee?: string[];
+    relatedAttendees?: string;
 };
 export declare type AttendeeCreateFormValidationValues = {
     firstName?: ValidationFunction<string>;
@@ -35,6 +36,7 @@ export declare type AttendeeCreateFormValidationValues = {
     food?: ValidationFunction<string>;
     lastName?: ValidationFunction<string>;
     notes?: ValidationFunction<string>;
+    relatedAttendee?: ValidationFunction<string>;
     relatedAttendees?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -42,9 +44,10 @@ export declare type AttendeeCreateFormOverridesProps = {
     AttendeeCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     firstName?: PrimitiveOverrideProps<TextFieldProps>;
     isAttending?: PrimitiveOverrideProps<SwitchFieldProps>;
-    food?: PrimitiveOverrideProps<SelectFieldProps>;
+    food?: PrimitiveOverrideProps<TextFieldProps>;
     lastName?: PrimitiveOverrideProps<TextFieldProps>;
     notes?: PrimitiveOverrideProps<TextFieldProps>;
+    relatedAttendee?: PrimitiveOverrideProps<TextFieldProps>;
     relatedAttendees?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AttendeeCreateFormProps = React.PropsWithChildren<{

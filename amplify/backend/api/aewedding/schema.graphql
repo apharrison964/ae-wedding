@@ -3,20 +3,20 @@ type Attendee @model @auth(rules: [{allow: public}]) {
   firstName: String!
   isAttending: Boolean!
   food: Food!
-  plusOne: [PlusOne] @hasMany(indexName: "byAttendee", fields: ["id"])
+  plusOne: PlusOne @hasOne
   lastName: String!
   notes: String
-  relatedAttendees: [ID]
+  relatedAttendee: [ID]
 }
 
 type PlusOne @model @auth(rules: [{allow: public}]) {
   id: ID!
   firstName: String!
   food: Food!
-  attendeeID: ID! @index(name: "byAttendee")
   lastName: String!
   isAttending: Boolean!
   notes: String
+  Attendee: Attendee @belongsTo
 }
 
 enum Food {

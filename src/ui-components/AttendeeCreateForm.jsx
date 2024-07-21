@@ -14,7 +14,6 @@ import {
   Grid,
   Icon,
   ScrollView,
-  SelectField,
   SwitchField,
   Text,
   TextField,
@@ -195,7 +194,8 @@ export default function AttendeeCreateForm(props) {
     food: "",
     lastName: "",
     notes: "",
-    relatedAttendees: [],
+    relatedAttendee: [],
+    relatedAttendees: "",
   };
   const [firstName, setFirstName] = React.useState(initialValues.firstName);
   const [isAttending, setIsAttending] = React.useState(
@@ -204,6 +204,9 @@ export default function AttendeeCreateForm(props) {
   const [food, setFood] = React.useState(initialValues.food);
   const [lastName, setLastName] = React.useState(initialValues.lastName);
   const [notes, setNotes] = React.useState(initialValues.notes);
+  const [relatedAttendee, setRelatedAttendee] = React.useState(
+    initialValues.relatedAttendee
+  );
   const [relatedAttendees, setRelatedAttendees] = React.useState(
     initialValues.relatedAttendees
   );
@@ -214,19 +217,21 @@ export default function AttendeeCreateForm(props) {
     setFood(initialValues.food);
     setLastName(initialValues.lastName);
     setNotes(initialValues.notes);
+    setRelatedAttendee(initialValues.relatedAttendee);
+    setCurrentRelatedAttendeeValue("");
     setRelatedAttendees(initialValues.relatedAttendees);
-    setCurrentRelatedAttendeesValue("");
     setErrors({});
   };
-  const [currentRelatedAttendeesValue, setCurrentRelatedAttendeesValue] =
+  const [currentRelatedAttendeeValue, setCurrentRelatedAttendeeValue] =
     React.useState("");
-  const relatedAttendeesRef = React.createRef();
+  const relatedAttendeeRef = React.createRef();
   const validations = {
     firstName: [{ type: "Required" }],
     isAttending: [{ type: "Required" }],
     food: [{ type: "Required" }],
     lastName: [{ type: "Required" }],
     notes: [],
+    relatedAttendee: [],
     relatedAttendees: [],
   };
   const runValidationTasks = async (
@@ -260,6 +265,7 @@ export default function AttendeeCreateForm(props) {
           food,
           lastName,
           notes,
+          relatedAttendee,
           relatedAttendees,
         };
         const validationResponses = await Promise.all(
@@ -290,7 +296,15 @@ export default function AttendeeCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await DataStore.save(new Attendee(modelFields));
+          const modelFieldsToSave = {
+            firstName: modelFields.firstName,
+            isAttending: modelFields.isAttending,
+            food: modelFields.food,
+            lastName: modelFields.lastName,
+            notes: modelFields.notes,
+            relatedAttendee: modelFields.relatedAttendee,
+          };
+          await DataStore.save(new Attendee(modelFieldsToSave));
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -320,6 +334,7 @@ export default function AttendeeCreateForm(props) {
               food,
               lastName,
               notes,
+              relatedAttendee,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -349,6 +364,7 @@ export default function AttendeeCreateForm(props) {
               food,
               lastName,
               notes,
+              relatedAttendee,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -364,10 +380,10 @@ export default function AttendeeCreateForm(props) {
         hasError={errors.isAttending?.hasError}
         {...getOverrideProps(overrides, "isAttending")}
       ></SwitchField>
-      <SelectField
+      <TextField
         label="Food"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={true}
+        isReadOnly={false}
         value={food}
         onChange={(e) => {
           let { value } = e.target;
@@ -378,6 +394,7 @@ export default function AttendeeCreateForm(props) {
               food: value,
               lastName,
               notes,
+              relatedAttendee,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -392,18 +409,7 @@ export default function AttendeeCreateForm(props) {
         errorMessage={errors.food?.errorMessage}
         hasError={errors.food?.hasError}
         {...getOverrideProps(overrides, "food")}
-      >
-        <option
-          children="Shrimp"
-          value="SHRIMP"
-          {...getOverrideProps(overrides, "foodoption0")}
-        ></option>
-        <option
-          children="Grilled chicken"
-          value="GRILLED_CHICKEN"
-          {...getOverrideProps(overrides, "foodoption1")}
-        ></option>
-      </SelectField>
+      ></TextField>
       <TextField
         label="Last name"
         isRequired={true}
@@ -418,6 +424,7 @@ export default function AttendeeCreateForm(props) {
               food,
               lastName: value,
               notes,
+              relatedAttendee,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -447,6 +454,7 @@ export default function AttendeeCreateForm(props) {
               food,
               lastName,
               notes: value,
+              relatedAttendee,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -472,51 +480,80 @@ export default function AttendeeCreateForm(props) {
               food,
               lastName,
               notes,
-              relatedAttendees: values,
+              relatedAttendee: values,
+              relatedAttendees,
             };
             const result = onChange(modelFields);
-            values = result?.relatedAttendees ?? values;
+            values = result?.relatedAttendee ?? values;
           }
-          setRelatedAttendees(values);
-          setCurrentRelatedAttendeesValue("");
+          setRelatedAttendee(values);
+          setCurrentRelatedAttendeeValue("");
         }}
-        currentFieldValue={currentRelatedAttendeesValue}
-        label={"Related attendees"}
-        items={relatedAttendees}
-        hasError={errors?.relatedAttendees?.hasError}
+        currentFieldValue={currentRelatedAttendeeValue}
+        label={"Related attendee"}
+        items={relatedAttendee}
+        hasError={errors?.relatedAttendee?.hasError}
         runValidationTasks={async () =>
           await runValidationTasks(
-            "relatedAttendees",
-            currentRelatedAttendeesValue
+            "relatedAttendee",
+            currentRelatedAttendeeValue
           )
         }
-        errorMessage={errors?.relatedAttendees?.errorMessage}
-        setFieldValue={setCurrentRelatedAttendeesValue}
-        inputFieldRef={relatedAttendeesRef}
+        errorMessage={errors?.relatedAttendee?.errorMessage}
+        setFieldValue={setCurrentRelatedAttendeeValue}
+        inputFieldRef={relatedAttendeeRef}
         defaultFieldValue={""}
       >
         <TextField
-          label="Related attendees"
+          label="Related attendee"
           isRequired={false}
           isReadOnly={false}
-          value={currentRelatedAttendeesValue}
+          value={currentRelatedAttendeeValue}
           onChange={(e) => {
             let { value } = e.target;
-            if (errors.relatedAttendees?.hasError) {
-              runValidationTasks("relatedAttendees", value);
+            if (errors.relatedAttendee?.hasError) {
+              runValidationTasks("relatedAttendee", value);
             }
-            setCurrentRelatedAttendeesValue(value);
+            setCurrentRelatedAttendeeValue(value);
           }}
           onBlur={() =>
-            runValidationTasks("relatedAttendees", currentRelatedAttendeesValue)
+            runValidationTasks("relatedAttendee", currentRelatedAttendeeValue)
           }
-          errorMessage={errors.relatedAttendees?.errorMessage}
-          hasError={errors.relatedAttendees?.hasError}
-          ref={relatedAttendeesRef}
+          errorMessage={errors.relatedAttendee?.errorMessage}
+          hasError={errors.relatedAttendee?.hasError}
+          ref={relatedAttendeeRef}
           labelHidden={true}
-          {...getOverrideProps(overrides, "relatedAttendees")}
+          {...getOverrideProps(overrides, "relatedAttendee")}
         ></TextField>
       </ArrayField>
+      <TextField
+        label="Related attendees"
+        value={relatedAttendees}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              firstName,
+              isAttending,
+              food,
+              lastName,
+              notes,
+              relatedAttendee,
+              relatedAttendees: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.relatedAttendees ?? value;
+          }
+          if (errors.relatedAttendees?.hasError) {
+            runValidationTasks("relatedAttendees", value);
+          }
+          setRelatedAttendees(value);
+        }}
+        onBlur={() => runValidationTasks("relatedAttendees", relatedAttendees)}
+        errorMessage={errors.relatedAttendees?.errorMessage}
+        hasError={errors.relatedAttendees?.hasError}
+        {...getOverrideProps(overrides, "relatedAttendees")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

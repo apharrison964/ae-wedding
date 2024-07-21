@@ -196,7 +196,7 @@ export default function AttendeeUpdateForm(props) {
     food: "",
     lastName: "",
     notes: "",
-    relatedAttendees: [],
+    relatedAttendee: [],
   };
   const [firstName, setFirstName] = React.useState(initialValues.firstName);
   const [isAttending, setIsAttending] = React.useState(
@@ -205,8 +205,8 @@ export default function AttendeeUpdateForm(props) {
   const [food, setFood] = React.useState(initialValues.food);
   const [lastName, setLastName] = React.useState(initialValues.lastName);
   const [notes, setNotes] = React.useState(initialValues.notes);
-  const [relatedAttendees, setRelatedAttendees] = React.useState(
-    initialValues.relatedAttendees
+  const [relatedAttendee, setRelatedAttendee] = React.useState(
+    initialValues.relatedAttendee
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -218,8 +218,8 @@ export default function AttendeeUpdateForm(props) {
     setFood(cleanValues.food);
     setLastName(cleanValues.lastName);
     setNotes(cleanValues.notes);
-    setRelatedAttendees(cleanValues.relatedAttendees ?? []);
-    setCurrentRelatedAttendeesValue("");
+    setRelatedAttendee(cleanValues.relatedAttendee ?? []);
+    setCurrentRelatedAttendeeValue("");
     setErrors({});
   };
   const [attendeeRecord, setAttendeeRecord] = React.useState(attendeeModelProp);
@@ -233,16 +233,16 @@ export default function AttendeeUpdateForm(props) {
     queryData();
   }, [idProp, attendeeModelProp]);
   React.useEffect(resetStateValues, [attendeeRecord]);
-  const [currentRelatedAttendeesValue, setCurrentRelatedAttendeesValue] =
+  const [currentRelatedAttendeeValue, setCurrentRelatedAttendeeValue] =
     React.useState("");
-  const relatedAttendeesRef = React.createRef();
+  const relatedAttendeeRef = React.createRef();
   const validations = {
     firstName: [{ type: "Required" }],
     isAttending: [{ type: "Required" }],
     food: [{ type: "Required" }],
     lastName: [{ type: "Required" }],
     notes: [],
-    relatedAttendees: [],
+    relatedAttendee: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -275,7 +275,7 @@ export default function AttendeeUpdateForm(props) {
           food,
           lastName,
           notes,
-          relatedAttendees,
+          relatedAttendee,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -336,7 +336,7 @@ export default function AttendeeUpdateForm(props) {
               food,
               lastName,
               notes,
-              relatedAttendees,
+              relatedAttendee,
             };
             const result = onChange(modelFields);
             value = result?.firstName ?? value;
@@ -365,7 +365,7 @@ export default function AttendeeUpdateForm(props) {
               food,
               lastName,
               notes,
-              relatedAttendees,
+              relatedAttendee,
             };
             const result = onChange(modelFields);
             value = result?.isAttending ?? value;
@@ -394,7 +394,7 @@ export default function AttendeeUpdateForm(props) {
               food: value,
               lastName,
               notes,
-              relatedAttendees,
+              relatedAttendee,
             };
             const result = onChange(modelFields);
             value = result?.food ?? value;
@@ -434,7 +434,7 @@ export default function AttendeeUpdateForm(props) {
               food,
               lastName: value,
               notes,
-              relatedAttendees,
+              relatedAttendee,
             };
             const result = onChange(modelFields);
             value = result?.lastName ?? value;
@@ -463,7 +463,7 @@ export default function AttendeeUpdateForm(props) {
               food,
               lastName,
               notes: value,
-              relatedAttendees,
+              relatedAttendee,
             };
             const result = onChange(modelFields);
             value = result?.notes ?? value;
@@ -488,49 +488,49 @@ export default function AttendeeUpdateForm(props) {
               food,
               lastName,
               notes,
-              relatedAttendees: values,
+              relatedAttendee: values,
             };
             const result = onChange(modelFields);
-            values = result?.relatedAttendees ?? values;
+            values = result?.relatedAttendee ?? values;
           }
-          setRelatedAttendees(values);
-          setCurrentRelatedAttendeesValue("");
+          setRelatedAttendee(values);
+          setCurrentRelatedAttendeeValue("");
         }}
-        currentFieldValue={currentRelatedAttendeesValue}
-        label={"Related attendees"}
-        items={relatedAttendees}
-        hasError={errors?.relatedAttendees?.hasError}
+        currentFieldValue={currentRelatedAttendeeValue}
+        label={"Related attendee"}
+        items={relatedAttendee}
+        hasError={errors?.relatedAttendee?.hasError}
         runValidationTasks={async () =>
           await runValidationTasks(
-            "relatedAttendees",
-            currentRelatedAttendeesValue
+            "relatedAttendee",
+            currentRelatedAttendeeValue
           )
         }
-        errorMessage={errors?.relatedAttendees?.errorMessage}
-        setFieldValue={setCurrentRelatedAttendeesValue}
-        inputFieldRef={relatedAttendeesRef}
+        errorMessage={errors?.relatedAttendee?.errorMessage}
+        setFieldValue={setCurrentRelatedAttendeeValue}
+        inputFieldRef={relatedAttendeeRef}
         defaultFieldValue={""}
       >
         <TextField
-          label="Related attendees"
+          label="Related attendee"
           isRequired={false}
           isReadOnly={false}
-          value={currentRelatedAttendeesValue}
+          value={currentRelatedAttendeeValue}
           onChange={(e) => {
             let { value } = e.target;
-            if (errors.relatedAttendees?.hasError) {
-              runValidationTasks("relatedAttendees", value);
+            if (errors.relatedAttendee?.hasError) {
+              runValidationTasks("relatedAttendee", value);
             }
-            setCurrentRelatedAttendeesValue(value);
+            setCurrentRelatedAttendeeValue(value);
           }}
           onBlur={() =>
-            runValidationTasks("relatedAttendees", currentRelatedAttendeesValue)
+            runValidationTasks("relatedAttendee", currentRelatedAttendeeValue)
           }
-          errorMessage={errors.relatedAttendees?.errorMessage}
-          hasError={errors.relatedAttendees?.hasError}
-          ref={relatedAttendeesRef}
+          errorMessage={errors.relatedAttendee?.errorMessage}
+          hasError={errors.relatedAttendee?.hasError}
+          ref={relatedAttendeeRef}
           labelHidden={true}
-          {...getOverrideProps(overrides, "relatedAttendees")}
+          {...getOverrideProps(overrides, "relatedAttendee")}
         ></TextField>
       </ArrayField>
       <Flex

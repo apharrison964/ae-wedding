@@ -28,7 +28,7 @@ export declare type AttendeeUpdateFormInputValues = {
     food?: string;
     lastName?: string;
     notes?: string;
-    relatedAttendees?: string[];
+    relatedAttendee?: string[];
 };
 export declare type AttendeeUpdateFormValidationValues = {
     firstName?: ValidationFunction<string>;
@@ -36,7 +36,7 @@ export declare type AttendeeUpdateFormValidationValues = {
     food?: ValidationFunction<string>;
     lastName?: ValidationFunction<string>;
     notes?: ValidationFunction<string>;
-    relatedAttendees?: ValidationFunction<string>;
+    relatedAttendee?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AttendeeUpdateFormOverridesProps = {
@@ -46,7 +46,7 @@ export declare type AttendeeUpdateFormOverridesProps = {
     food?: PrimitiveOverrideProps<SelectFieldProps>;
     lastName?: PrimitiveOverrideProps<TextFieldProps>;
     notes?: PrimitiveOverrideProps<TextFieldProps>;
-    relatedAttendees?: PrimitiveOverrideProps<TextFieldProps>;
+    relatedAttendee?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AttendeeUpdateFormProps = React.PropsWithChildren<{
     overrides?: AttendeeUpdateFormOverridesProps | undefined | null;

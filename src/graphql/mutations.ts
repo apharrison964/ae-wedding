@@ -18,14 +18,61 @@ export const createAttendee = /* GraphQL */ `mutation CreateAttendee(
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      firstName
+      food
+      lastName
+      isAttending
+      notes
+      Attendee {
+        id
+        firstName
+        isAttending
+        food
+        plusOne {
+          id
+          firstName
+          food
+          lastName
+          isAttending
+          notes
+          Attendee {
+            id
+            firstName
+            isAttending
+            food
+            lastName
+            notes
+            relatedAttendee
+            createdAt
+            updatedAt
+            attendeePlusOneId
+            __typename
+          }
+          createdAt
+          updatedAt
+          plusOneAttendeeId
+          __typename
+        }
+        lastName
+        notes
+        relatedAttendee
+        createdAt
+        updatedAt
+        attendeePlusOneId
+        __typename
+      }
+      createdAt
+      updatedAt
+      plusOneAttendeeId
       __typename
     }
     lastName
     notes
-    relatedAttendees
+    relatedAttendee
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -43,14 +90,61 @@ export const updateAttendee = /* GraphQL */ `mutation UpdateAttendee(
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      firstName
+      food
+      lastName
+      isAttending
+      notes
+      Attendee {
+        id
+        firstName
+        isAttending
+        food
+        plusOne {
+          id
+          firstName
+          food
+          lastName
+          isAttending
+          notes
+          Attendee {
+            id
+            firstName
+            isAttending
+            food
+            lastName
+            notes
+            relatedAttendee
+            createdAt
+            updatedAt
+            attendeePlusOneId
+            __typename
+          }
+          createdAt
+          updatedAt
+          plusOneAttendeeId
+          __typename
+        }
+        lastName
+        notes
+        relatedAttendee
+        createdAt
+        updatedAt
+        attendeePlusOneId
+        __typename
+      }
+      createdAt
+      updatedAt
+      plusOneAttendeeId
       __typename
     }
     lastName
     notes
-    relatedAttendees
+    relatedAttendee
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -68,14 +162,61 @@ export const deleteAttendee = /* GraphQL */ `mutation DeleteAttendee(
     isAttending
     food
     plusOne {
-      nextToken
+      id
+      firstName
+      food
+      lastName
+      isAttending
+      notes
+      Attendee {
+        id
+        firstName
+        isAttending
+        food
+        plusOne {
+          id
+          firstName
+          food
+          lastName
+          isAttending
+          notes
+          Attendee {
+            id
+            firstName
+            isAttending
+            food
+            lastName
+            notes
+            relatedAttendee
+            createdAt
+            updatedAt
+            attendeePlusOneId
+            __typename
+          }
+          createdAt
+          updatedAt
+          plusOneAttendeeId
+          __typename
+        }
+        lastName
+        notes
+        relatedAttendee
+        createdAt
+        updatedAt
+        attendeePlusOneId
+        __typename
+      }
+      createdAt
+      updatedAt
+      plusOneAttendeeId
       __typename
     }
     lastName
     notes
-    relatedAttendees
+    relatedAttendee
     createdAt
     updatedAt
+    attendeePlusOneId
     __typename
   }
 }
@@ -91,12 +232,62 @@ export const createPlusOne = /* GraphQL */ `mutation CreatePlusOne(
     id
     firstName
     food
-    attendeeID
     lastName
     isAttending
     notes
+    Attendee {
+      id
+      firstName
+      isAttending
+      food
+      plusOne {
+        id
+        firstName
+        food
+        lastName
+        isAttending
+        notes
+        Attendee {
+          id
+          firstName
+          isAttending
+          food
+          plusOne {
+            id
+            firstName
+            food
+            lastName
+            isAttending
+            notes
+            createdAt
+            updatedAt
+            plusOneAttendeeId
+            __typename
+          }
+          lastName
+          notes
+          relatedAttendee
+          createdAt
+          updatedAt
+          attendeePlusOneId
+          __typename
+        }
+        createdAt
+        updatedAt
+        plusOneAttendeeId
+        __typename
+      }
+      lastName
+      notes
+      relatedAttendee
+      createdAt
+      updatedAt
+      attendeePlusOneId
+      __typename
+    }
     createdAt
     updatedAt
+    plusOneAttendeeId
     __typename
   }
 }
@@ -112,12 +303,62 @@ export const updatePlusOne = /* GraphQL */ `mutation UpdatePlusOne(
     id
     firstName
     food
-    attendeeID
     lastName
     isAttending
     notes
+    Attendee {
+      id
+      firstName
+      isAttending
+      food
+      plusOne {
+        id
+        firstName
+        food
+        lastName
+        isAttending
+        notes
+        Attendee {
+          id
+          firstName
+          isAttending
+          food
+          plusOne {
+            id
+            firstName
+            food
+            lastName
+            isAttending
+            notes
+            createdAt
+            updatedAt
+            plusOneAttendeeId
+            __typename
+          }
+          lastName
+          notes
+          relatedAttendee
+          createdAt
+          updatedAt
+          attendeePlusOneId
+          __typename
+        }
+        createdAt
+        updatedAt
+        plusOneAttendeeId
+        __typename
+      }
+      lastName
+      notes
+      relatedAttendee
+      createdAt
+      updatedAt
+      attendeePlusOneId
+      __typename
+    }
     createdAt
     updatedAt
+    plusOneAttendeeId
     __typename
   }
 }
@@ -133,12 +374,62 @@ export const deletePlusOne = /* GraphQL */ `mutation DeletePlusOne(
     id
     firstName
     food
-    attendeeID
     lastName
     isAttending
     notes
+    Attendee {
+      id
+      firstName
+      isAttending
+      food
+      plusOne {
+        id
+        firstName
+        food
+        lastName
+        isAttending
+        notes
+        Attendee {
+          id
+          firstName
+          isAttending
+          food
+          plusOne {
+            id
+            firstName
+            food
+            lastName
+            isAttending
+            notes
+            createdAt
+            updatedAt
+            plusOneAttendeeId
+            __typename
+          }
+          lastName
+          notes
+          relatedAttendee
+          createdAt
+          updatedAt
+          attendeePlusOneId
+          __typename
+        }
+        createdAt
+        updatedAt
+        plusOneAttendeeId
+        __typename
+      }
+      lastName
+      notes
+      relatedAttendee
+      createdAt
+      updatedAt
+      attendeePlusOneId
+      __typename
+    }
     createdAt
     updatedAt
+    plusOneAttendeeId
     __typename
   }
 }
