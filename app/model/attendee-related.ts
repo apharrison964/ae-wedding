@@ -1,4 +1,4 @@
-import { Attendee } from "../../src/API";
+import { Attendee, Food } from "../../src/API";
 
 export interface AttendeeRelated {
     attendee: Attendee | undefined;
@@ -9,4 +9,9 @@ export interface AttendeeRelated {
 export interface AttendeeRelatedProps {
     attendee: Attendee;
     relatedAttendees?: Attendee[];
+    updateAttendeeIsAttending(isAttending: boolean);
+    updateAttendeeFood(food: Food);
+    updateRelatedAttendeeIsAttending(isAttending: boolean, id: string);
+    updateRelatedFood(food: Food, id: string);
+    updateData();
 }
