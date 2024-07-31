@@ -7,13 +7,13 @@ Amplify.configure(amplifyconfig);
 
 import React, { useEffect, useState } from 'react';
 import commonStyles from '../../styles/common.module.scss';
-import { Button, Flex, Grid, Input, Label, Radio, RadioGroupField, View } from '@aws-amplify/ui-react';
+import { Button, Flex, Grid, Input, Label, Radio, RadioGroupField, TextAreaField, View } from '@aws-amplify/ui-react';
 import { AttendeeRelated, AttendeeRelatedProps } from '../model/attendee-related';
 import { Attendee, Food } from '../../src/API';
 
 
 
-const RSVPList = ({ attendee, relatedAttendees, updateAttendeeIsAttending, updateAttendeeFood, updateRelatedAttendeeIsAttending, updateRelatedFood, updateData }: AttendeeRelatedProps) => {
+const RSVPList = ({ attendee, relatedAttendees, updateAttendeeIsAttending, updateAttendeeFood, updateRelatedAttendeeIsAttending, updateRelatedFood, updateData, updateRelatedNotes, updateAttendeeNotes }: AttendeeRelatedProps) => {
     console.log('what is happening', attendee, relatedAttendees);
     const [childAttendee, setChildAttendee] = useState<Attendee>();
     const [childRelated, setChildRelated] = useState<Attendee[]>();
@@ -59,8 +59,18 @@ const RSVPList = ({ attendee, relatedAttendees, updateAttendeeIsAttending, updat
                         <RadioGroupField id="attendee-meal" legendHidden={true} direction="row" legend="Meal Selection" name="attendee-meal" onChange={(e) => updateFood(e.target.value, 'attendee')}>
                             <Radio value={Food.GRILLED_CHICKEN} checked={attendee.food === Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
                             <Radio value={Food.SHRIMP} checked={attendee.food === Food.SHRIMP}>Shrimp</Radio>
-                            <Radio value={Food.DIETARY_RESTRICTION} checked={attendee.food === Food.DIETARY_RESTRICTION}>Dietary Restriction</Radio>
+                            <Radio value={Food.OTHER} checked={attendee.food === Food.OTHER}>Dietary Restriction</Radio>
                         </RadioGroupField>
+                        {attendee.food === Food.OTHER ? <TextAreaField width="100%" textAlign="left"
+                            descriptiveText="Please give more details about the dietary restrictions"
+                            labelHidden={true}
+                            label="Dietary restriction details"
+                            name="dietery_info"
+                            value={attendee.notes ? attendee.notes : ''}
+                            onChange={(e) => updateAttendeeNotes(e.target.value)} // update this to have the parent handle it.
+                            placeholder="Gluten free, allergic to fish, etc"
+                            rows={3}/> 
+                            : null}
                     </Flex>
                 </Flex>
                 {childRelated?.map(relatedAttendee => (
@@ -78,8 +88,18 @@ const RSVPList = ({ attendee, relatedAttendees, updateAttendeeIsAttending, updat
                             <RadioGroupField id={`related-${relatedAttendee.id}-meal`} legendHidden={true} direction="row" legend="Meal Selection" name={`related-${relatedAttendee.id}-meal`} onChange={(e) => updateFood(e.target.value, 'related', relatedAttendee.id)}>
                                 <Radio value={Food.GRILLED_CHICKEN} checked={relatedAttendee.food === Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
                                 <Radio value={Food.SHRIMP} checked={relatedAttendee.food === Food.SHRIMP}>Shrimp</Radio>
-                                <Radio value={Food.DIETARY_RESTRICTION} checked={relatedAttendee.food === Food.DIETARY_RESTRICTION}>Dietery Restriction</Radio>
+                                <Radio value={Food.OTHER} checked={relatedAttendee.food === Food.OTHER}>Dietery Restriction</Radio>
                             </RadioGroupField>
+                            {relatedAttendee.food === Food.OTHER ? <TextAreaField width="100%" textAlign="left"
+                                descriptiveText="Please give more details about the dietary restrictions"
+                                labelHidden={true}
+                                label="Dietary restriction details"
+                                name={`dietery_info_${relatedAttendee.id}`}
+                                value={relatedAttendee.notes ? relatedAttendee.notes : ''}
+                                onChange={(e) => updateRelatedNotes(e.target.value, relatedAttendee.id)} // update this to have the parent handle it.
+                                placeholder="Gluten free, allergic to fish, etc"
+                                rows={3}/> 
+                            : null}
                         </Flex>
                     </Flex>
 

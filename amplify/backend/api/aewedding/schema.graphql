@@ -1,8 +1,8 @@
 type Attendee @model @auth(rules: [{allow: public}]) {
   id: ID!
   firstName: String!
-  isAttending: Boolean!
-  food: Food!
+  isAttending: Boolean
+  food: Food
   plusOne: PlusOne @hasOne
   lastName: String!
   notes: String
@@ -12,9 +12,9 @@ type Attendee @model @auth(rules: [{allow: public}]) {
 type PlusOne @model @auth(rules: [{allow: public}]) {
   id: ID!
   firstName: String!
-  food: Food!
+  food: Food
   lastName: String!
-  isAttending: Boolean!
+  isAttending: Boolean
   notes: String
   Attendee: Attendee @belongsTo
 }
@@ -22,5 +22,6 @@ type PlusOne @model @auth(rules: [{allow: public}]) {
 enum Food {
   SHRIMP
   GRILLED_CHICKEN
+  OTHER
 }
  

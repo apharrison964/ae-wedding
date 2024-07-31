@@ -238,8 +238,8 @@ export default function AttendeeUpdateForm(props) {
   const relatedAttendeeRef = React.createRef();
   const validations = {
     firstName: [{ type: "Required" }],
-    isAttending: [{ type: "Required" }],
-    food: [{ type: "Required" }],
+    isAttending: [],
+    food: [],
     lastName: [{ type: "Required" }],
     notes: [],
     relatedAttendee: [],
@@ -418,6 +418,11 @@ export default function AttendeeUpdateForm(props) {
           children="Grilled chicken"
           value="GRILLED_CHICKEN"
           {...getOverrideProps(overrides, "foodoption1")}
+        ></option>
+        <option
+          children="Other"
+          value="OTHER"
+          {...getOverrideProps(overrides, "foodoption2")}
         ></option>
       </SelectField>
       <TextField

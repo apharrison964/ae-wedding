@@ -21,44 +21,6 @@ export const getAttendee = /* GraphQL */ `query GetAttendee($id: ID!) {
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -88,43 +50,6 @@ export const listAttendees = /* GraphQL */ `query ListAttendees(
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee
@@ -154,43 +79,6 @@ export const getPlusOne = /* GraphQL */ `query GetPlusOne($id: ID!) {
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee
@@ -222,44 +110,6 @@ export const listPlusOnes = /* GraphQL */ `query ListPlusOnes(
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId

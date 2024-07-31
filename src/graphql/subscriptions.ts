@@ -21,44 +21,6 @@ export const onCreateAttendee = /* GraphQL */ `subscription OnCreateAttendee($fi
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -90,44 +52,6 @@ export const onUpdateAttendee = /* GraphQL */ `subscription OnUpdateAttendee($fi
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -159,44 +83,6 @@ export const onDeleteAttendee = /* GraphQL */ `subscription OnDeleteAttendee($fi
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -228,43 +114,6 @@ export const onCreatePlusOne = /* GraphQL */ `subscription OnCreatePlusOne($filt
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee
@@ -296,43 +145,6 @@ export const onUpdatePlusOne = /* GraphQL */ `subscription OnUpdatePlusOne($filt
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee
@@ -364,43 +176,6 @@ export const onDeletePlusOne = /* GraphQL */ `subscription OnDeletePlusOne($filt
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee

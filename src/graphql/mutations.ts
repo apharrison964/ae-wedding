@@ -24,44 +24,6 @@ export const createAttendee = /* GraphQL */ `mutation CreateAttendee(
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -96,44 +58,6 @@ export const updateAttendee = /* GraphQL */ `mutation UpdateAttendee(
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -168,44 +92,6 @@ export const deleteAttendee = /* GraphQL */ `mutation DeleteAttendee(
       lastName
       isAttending
       notes
-      Attendee {
-        id
-        firstName
-        isAttending
-        food
-        plusOne {
-          id
-          firstName
-          food
-          lastName
-          isAttending
-          notes
-          Attendee {
-            id
-            firstName
-            isAttending
-            food
-            lastName
-            notes
-            relatedAttendee
-            createdAt
-            updatedAt
-            attendeePlusOneId
-            __typename
-          }
-          createdAt
-          updatedAt
-          plusOneAttendeeId
-          __typename
-        }
-        lastName
-        notes
-        relatedAttendee
-        createdAt
-        updatedAt
-        attendeePlusOneId
-        __typename
-      }
       createdAt
       updatedAt
       plusOneAttendeeId
@@ -240,43 +126,6 @@ export const createPlusOne = /* GraphQL */ `mutation CreatePlusOne(
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee
@@ -311,43 +160,6 @@ export const updatePlusOne = /* GraphQL */ `mutation UpdatePlusOne(
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee
@@ -382,43 +194,6 @@ export const deletePlusOne = /* GraphQL */ `mutation DeletePlusOne(
       firstName
       isAttending
       food
-      plusOne {
-        id
-        firstName
-        food
-        lastName
-        isAttending
-        notes
-        Attendee {
-          id
-          firstName
-          isAttending
-          food
-          plusOne {
-            id
-            firstName
-            food
-            lastName
-            isAttending
-            notes
-            createdAt
-            updatedAt
-            plusOneAttendeeId
-            __typename
-          }
-          lastName
-          notes
-          relatedAttendee
-          createdAt
-          updatedAt
-          attendeePlusOneId
-          __typename
-        }
-        createdAt
-        updatedAt
-        plusOneAttendeeId
-        __typename
-      }
       lastName
       notes
       relatedAttendee

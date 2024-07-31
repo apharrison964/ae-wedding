@@ -68,9 +68,9 @@ export default function PlusOneUpdateForm(props) {
   React.useEffect(resetStateValues, [plusOneRecord]);
   const validations = {
     firstName: [{ type: "Required" }],
-    food: [{ type: "Required" }],
+    food: [],
     lastName: [{ type: "Required" }],
-    isAttending: [{ type: "Required" }],
+    isAttending: [],
     notes: [],
   };
   const runValidationTasks = async (
@@ -215,6 +215,11 @@ export default function PlusOneUpdateForm(props) {
           children="Grilled chicken"
           value="GRILLED_CHICKEN"
           {...getOverrideProps(overrides, "foodoption1")}
+        ></option>
+        <option
+          children="Other"
+          value="OTHER"
+          {...getOverrideProps(overrides, "foodoption2")}
         ></option>
       </SelectField>
       <TextField

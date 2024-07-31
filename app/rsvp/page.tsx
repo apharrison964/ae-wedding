@@ -76,6 +76,24 @@ const RSVP = () => {
         }
     }
 
+    const updatedRelatedNotes = (note: string, id: string) => {
+        if (relatedAttendees) {
+            relatedAttendees.forEach(ra => {
+                if (ra.id === id) {
+                    ra.notes = note;
+                }
+            });
+            setRelatedAttendees([...relatedAttendees])
+        }
+    }
+
+    const updateAttendeeNotes = (note: string) => {
+        if (attendee) {
+            attendee.notes = note;
+            setAttendee({...attendee});
+        }
+    }
+
     const updateData = () => {
         console.log('Submit', attendee, relatedAttendees);
     }
@@ -83,7 +101,7 @@ const RSVP = () => {
     const findAttendee = () => {
         const attendee = attendeesList?.find(attendee => attendee.firstName.toLowerCase() === firstNameValue.toLowerCase() && attendee.lastName.toLowerCase() === lastNameValue.toLowerCase());
         setAttendee(attendee);
-        
+
         if (attendee) {
             const related = findRelatedAttendees(attendee?.relatedAttendee as string[]);
             setRelatedAttendees(related);
@@ -120,7 +138,18 @@ const RSVP = () => {
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>
                 { !searchDone ? <RSVPSearch firstNameValue={firstNameValue} lastNameValue={lastNameValue} findAttendee={findAttendee} handleInputChange={handleInputChange}></RSVPSearch> : null }
-                { searchDone ? <RSVPList relatedAttendees={relatedAttendees} attendee={attendee!} updateAttendeeIsAttending={updateAttendeeIsAttending} updateAttendeeFood={updateAttendeeFood} updateRelatedAttendeeIsAttending={updateRelatedAttendeeIsAttending} updateRelatedFood={updateRelatedFood} updateData={updateData}></RSVPList> : null }
+                { searchDone ? 
+                <RSVPList 
+                    relatedAttendees={relatedAttendees} 
+                    attendee={attendee!} 
+                    updateAttendeeIsAttending={updateAttendeeIsAttending} 
+                    updateAttendeeFood={updateAttendeeFood} 
+                    updateRelatedAttendeeIsAttending={updateRelatedAttendeeIsAttending} 
+                    updateRelatedFood={updateRelatedFood} 
+                    updateData={updateData}
+                    updateRelatedNotes={updatedRelatedNotes}
+                    updateAttendeeNotes={updateAttendeeNotes}>
+                </RSVPList> : null }
                 {/* { testing ? <RSVPConfirmation attendeeRelated={attendeeRelated}></RSVPConfirmation> : null } */}
             </View>
         </Grid>

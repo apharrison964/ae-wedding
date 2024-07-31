@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, RadioGroupFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -43,7 +43,7 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type AttendeeCreateFormOverridesProps = {
     AttendeeCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     firstName?: PrimitiveOverrideProps<TextFieldProps>;
-    isAttending?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isAttending?: PrimitiveOverrideProps<RadioGroupFieldProps>;
     food?: PrimitiveOverrideProps<TextFieldProps>;
     lastName?: PrimitiveOverrideProps<TextFieldProps>;
     notes?: PrimitiveOverrideProps<TextFieldProps>;

@@ -13,5 +13,7 @@ export interface AttendeeRelatedProps {
     updateAttendeeFood(food: Food);
     updateRelatedAttendeeIsAttending(isAttending: boolean, id: string);
     updateRelatedFood(food: Food, id: string);
+    updateRelatedNotes(note: string, id: string);
+    updateAttendeeNotes(note: string);
     updateData();
 }

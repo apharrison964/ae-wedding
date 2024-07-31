@@ -2,5 +2,6 @@
   "AppSyncApiName": "aewedding",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-10-22T21:57:57.302Z"
+  "AuthModeLastUpdated": "2023-10-22T21:57:57.302Z",
+  "CreateApiKey": 1
 }

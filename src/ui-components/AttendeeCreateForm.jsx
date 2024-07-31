@@ -13,8 +13,9 @@ import {
   Flex,
   Grid,
   Icon,
+  Radio,
+  RadioGroupField,
   ScrollView,
-  SwitchField,
   Text,
   TextField,
   useTheme,
@@ -190,7 +191,7 @@ export default function AttendeeCreateForm(props) {
   } = props;
   const initialValues = {
     firstName: "",
-    isAttending: false,
+    isAttending: undefined,
     food: "",
     lastName: "",
     notes: "",
@@ -227,8 +228,8 @@ export default function AttendeeCreateForm(props) {
   const relatedAttendeeRef = React.createRef();
   const validations = {
     firstName: [{ type: "Required" }],
-    isAttending: [{ type: "Required" }],
-    food: [{ type: "Required" }],
+    isAttending: [],
+    food: [],
     lastName: [{ type: "Required" }],
     notes: [],
     relatedAttendee: [],
@@ -350,13 +351,13 @@ export default function AttendeeCreateForm(props) {
         hasError={errors.firstName?.hasError}
         {...getOverrideProps(overrides, "firstName")}
       ></TextField>
-      <SwitchField
+      <RadioGroupField
         label="Is attending"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={isAttending}
+        name="isAttending"
+        isReadOnly={false}
+        isRequired={false}
         onChange={(e) => {
-          let value = e.target.checked;
+          let value = e.target.value === "true";
           if (onChange) {
             const modelFields = {
               firstName,
@@ -379,10 +380,21 @@ export default function AttendeeCreateForm(props) {
         errorMessage={errors.isAttending?.errorMessage}
         hasError={errors.isAttending?.hasError}
         {...getOverrideProps(overrides, "isAttending")}
-      ></SwitchField>
+      >
+        <Radio
+          children="Yes"
+          value="true"
+          {...getOverrideProps(overrides, "isAttendingRadio0")}
+        ></Radio>
+        <Radio
+          children="No"
+          value="false"
+          {...getOverrideProps(overrides, "isAttendingRadio1")}
+        ></Radio>
+      </RadioGroupField>
       <TextField
         label="Food"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={food}
         onChange={(e) => {
