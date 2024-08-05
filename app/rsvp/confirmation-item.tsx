@@ -16,7 +16,6 @@ import { enumToFood } from '../helper/food-helper';
 
 
 const RSVPConfirmationItem = ({attendeeInfo}) => {
-    console.log('WHAT IS THIS', attendeeInfo);
     return (
     <View fontSize='1.25rem'>
         <Flex alignItems='center'>{ attendeeInfo.isAttending ? <FaCheck color='green' /> : <FaX color='red' />}{attendeeInfo.firstName} {attendeeInfo.lastName} - {attendeeInfo.isAttending ? 'ACCEPT' : 'DECLINE' }</Flex>

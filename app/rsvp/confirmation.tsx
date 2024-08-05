@@ -16,9 +16,6 @@ import RSVPConfirmationItem from './confirmation-item';
 
 
 const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, setUpdateDone }) => {
-    // console.log('what is attendee', attendee);
-    // console.log('what is related attendees', relatedAttendees);
-    // console.log('what is plusOne', plusOne);
     return (
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>

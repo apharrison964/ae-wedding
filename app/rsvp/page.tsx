@@ -147,19 +147,22 @@ const RSVP = () => {
             }
             
             const newAttendee = await client.graphql( { query: createAttendee, variables: { input: updatePlusOne }});
+            if (attendeesList) {
+                attendeesList?.push(newAttendee.data.createAttendee);
+                setAttendeesList([...attendeesList]);
+            }
+            
+            // if I have free time, if they come back to edit, they could change the name of the plus one. doing this, they can't
+            // the way to do it would be knowing they have a plus one and then getting the user and making them a plus one
             setPlusOne(undefined);
             if (attendee) {
                 attendee.relatedAttendee?.push(newAttendee.data.createAttendee.id);
                 attendee.addedPlusOne = true;
                 setAttendee({...attendee, addedPlusOne: true});
-                console.log('ATTENDEE IS HERE', attendee);
                 const related = findRelatedAttendees(attendee?.relatedAttendee as string[]);
-                setRelatedAttendees({...related});
-                console.log('please what is this', relatedAttendees);
+                setRelatedAttendees([...related]);
 
             }
-            console.log('what is attendee here', attendee);
-            console.log('did this create', newAttendee);
         }
 
         if (relatedAttendees) {
@@ -174,12 +177,10 @@ const RSVP = () => {
                     relatedAttendee: ra.relatedAttendee
                 }
                 const update = await client.graphql({ query: updateAttendee, variables: { input }});
-                console.log('where the related attendees update', update)
             }
         }
         
         if (attendee) {
-            console.log('what the heck is this, why is the updated not working', attendee);
             const input: UpdateAttendeeInput = {
                 id: attendee.id,
                 firstName: attendee.firstName,
@@ -192,7 +193,6 @@ const RSVP = () => {
                 addedPlusOne: attendee.addedPlusOne
             }
             const update = await client.graphql({ query: updateAttendee, variables: { input }});
-            console.log('did update work', update);
             
         }
         setTimeout(() => {
@@ -222,9 +222,9 @@ const RSVP = () => {
     const findRelatedAttendees = (relatedList: string[]) => {
         let list: Attendee[] = [];
         relatedList.forEach(id => {
-            list.push(attendeesList!.find(attendee => attendee.id.trim() === id.trim()) as Attendee)
+            const value = attendeesList!.find(attendee => attendee.id.trim() === id.trim()) as Attendee;
+            list.push(value)
         });
-
         return list;
     }
 
