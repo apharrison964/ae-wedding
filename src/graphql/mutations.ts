@@ -17,24 +17,13 @@ export const createAttendee = /* GraphQL */ `mutation CreateAttendee(
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
@@ -51,24 +40,13 @@ export const updateAttendee = /* GraphQL */ `mutation UpdateAttendee(
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
@@ -85,130 +63,17 @@ export const deleteAttendee = /* GraphQL */ `mutation DeleteAttendee(
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
 ` as GeneratedMutation<
   APITypes.DeleteAttendeeMutationVariables,
   APITypes.DeleteAttendeeMutation
->;
-export const createPlusOne = /* GraphQL */ `mutation CreatePlusOne(
-  $input: CreatePlusOneInput!
-  $condition: ModelPlusOneConditionInput
-) {
-  createPlusOne(input: $input, condition: $condition) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreatePlusOneMutationVariables,
-  APITypes.CreatePlusOneMutation
->;
-export const updatePlusOne = /* GraphQL */ `mutation UpdatePlusOne(
-  $input: UpdatePlusOneInput!
-  $condition: ModelPlusOneConditionInput
-) {
-  updatePlusOne(input: $input, condition: $condition) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdatePlusOneMutationVariables,
-  APITypes.UpdatePlusOneMutation
->;
-export const deletePlusOne = /* GraphQL */ `mutation DeletePlusOne(
-  $input: DeletePlusOneInput!
-  $condition: ModelPlusOneConditionInput
-) {
-  deletePlusOne(input: $input, condition: $condition) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeletePlusOneMutationVariables,
-  APITypes.DeletePlusOneMutation
 >;

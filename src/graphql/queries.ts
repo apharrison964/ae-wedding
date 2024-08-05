@@ -14,24 +14,13 @@ export const getAttendee = /* GraphQL */ `query GetAttendee($id: ID!) {
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
@@ -53,9 +42,10 @@ export const listAttendees = /* GraphQL */ `query ListAttendees(
       lastName
       notes
       relatedAttendee
+      hasPlusOne
+      addedPlusOne
       createdAt
       updatedAt
-      attendeePlusOneId
       __typename
     }
     nextToken
@@ -65,61 +55,4 @@ export const listAttendees = /* GraphQL */ `query ListAttendees(
 ` as GeneratedQuery<
   APITypes.ListAttendeesQueryVariables,
   APITypes.ListAttendeesQuery
->;
-export const getPlusOne = /* GraphQL */ `query GetPlusOne($id: ID!) {
-  getPlusOne(id: $id) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetPlusOneQueryVariables,
-  APITypes.GetPlusOneQuery
->;
-export const listPlusOnes = /* GraphQL */ `query ListPlusOnes(
-  $filter: ModelPlusOneFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listPlusOnes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListPlusOnesQueryVariables,
-  APITypes.ListPlusOnesQuery
 >;

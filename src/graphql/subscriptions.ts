@@ -14,24 +14,13 @@ export const onCreateAttendee = /* GraphQL */ `subscription OnCreateAttendee($fi
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
@@ -45,24 +34,13 @@ export const onUpdateAttendee = /* GraphQL */ `subscription OnUpdateAttendee($fi
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
@@ -76,121 +54,17 @@ export const onDeleteAttendee = /* GraphQL */ `subscription OnDeleteAttendee($fi
     firstName
     isAttending
     food
-    plusOne {
-      id
-      firstName
-      food
-      lastName
-      isAttending
-      notes
-      createdAt
-      updatedAt
-      plusOneAttendeeId
-      __typename
-    }
     lastName
     notes
     relatedAttendee
+    hasPlusOne
+    addedPlusOne
     createdAt
     updatedAt
-    attendeePlusOneId
     __typename
   }
 }
 ` as GeneratedSubscription<
   APITypes.OnDeleteAttendeeSubscriptionVariables,
   APITypes.OnDeleteAttendeeSubscription
->;
-export const onCreatePlusOne = /* GraphQL */ `subscription OnCreatePlusOne($filter: ModelSubscriptionPlusOneFilterInput) {
-  onCreatePlusOne(filter: $filter) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreatePlusOneSubscriptionVariables,
-  APITypes.OnCreatePlusOneSubscription
->;
-export const onUpdatePlusOne = /* GraphQL */ `subscription OnUpdatePlusOne($filter: ModelSubscriptionPlusOneFilterInput) {
-  onUpdatePlusOne(filter: $filter) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdatePlusOneSubscriptionVariables,
-  APITypes.OnUpdatePlusOneSubscription
->;
-export const onDeletePlusOne = /* GraphQL */ `subscription OnDeletePlusOne($filter: ModelSubscriptionPlusOneFilterInput) {
-  onDeletePlusOne(filter: $filter) {
-    id
-    firstName
-    food
-    lastName
-    isAttending
-    notes
-    Attendee {
-      id
-      firstName
-      isAttending
-      food
-      lastName
-      notes
-      relatedAttendee
-      createdAt
-      updatedAt
-      attendeePlusOneId
-      __typename
-    }
-    createdAt
-    updatedAt
-    plusOneAttendeeId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeletePlusOneSubscriptionVariables,
-  APITypes.OnDeletePlusOneSubscription
 >;

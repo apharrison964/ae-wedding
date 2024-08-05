@@ -10,7 +10,8 @@ export type CreateAttendeeInput = {
   lastName: string,
   notes?: string | null,
   relatedAttendee?: Array< string | null > | null,
-  attendeePlusOneId?: string | null,
+  hasPlusOne?: boolean | null,
+  addedPlusOne?: boolean | null,
 };
 
 export enum Food {
@@ -27,12 +28,13 @@ export type ModelAttendeeConditionInput = {
   lastName?: ModelStringInput | null,
   notes?: ModelStringInput | null,
   relatedAttendee?: ModelIDInput | null,
+  hasPlusOne?: ModelBooleanInput | null,
+  addedPlusOne?: ModelBooleanInput | null,
   and?: Array< ModelAttendeeConditionInput | null > | null,
   or?: Array< ModelAttendeeConditionInput | null > | null,
   not?: ModelAttendeeConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  attendeePlusOneId?: ModelIDInput | null,
 };
 
 export type ModelStringInput = {
@@ -109,27 +111,13 @@ export type Attendee = {
   firstName: string,
   isAttending?: boolean | null,
   food?: Food | null,
-  plusOne?: PlusOne | null,
   lastName: string,
   notes?: string | null,
   relatedAttendee?: Array< string | null > | null,
+  hasPlusOne?: boolean | null,
+  addedPlusOne?: boolean | null,
   createdAt: string,
   updatedAt: string,
-  attendeePlusOneId?: string | null,
-};
-
-export type PlusOne = {
-  __typename: "PlusOne",
-  id: string,
-  firstName: string,
-  food?: Food | null,
-  lastName: string,
-  isAttending?: boolean | null,
-  notes?: string | null,
-  Attendee?: Attendee | null,
-  createdAt: string,
-  updatedAt: string,
-  plusOneAttendeeId?: string | null,
 };
 
 export type UpdateAttendeeInput = {
@@ -140,48 +128,11 @@ export type UpdateAttendeeInput = {
   lastName?: string | null,
   notes?: string | null,
   relatedAttendee?: Array< string | null > | null,
-  attendeePlusOneId?: string | null,
+  hasPlusOne?: boolean | null,
+  addedPlusOne?: boolean | null,
 };
 
 export type DeleteAttendeeInput = {
-  id: string,
-};
-
-export type CreatePlusOneInput = {
-  id?: string | null,
-  firstName: string,
-  food?: Food | null,
-  lastName: string,
-  isAttending?: boolean | null,
-  notes?: string | null,
-  plusOneAttendeeId?: string | null,
-};
-
-export type ModelPlusOneConditionInput = {
-  firstName?: ModelStringInput | null,
-  food?: ModelFoodInput | null,
-  lastName?: ModelStringInput | null,
-  isAttending?: ModelBooleanInput | null,
-  notes?: ModelStringInput | null,
-  and?: Array< ModelPlusOneConditionInput | null > | null,
-  or?: Array< ModelPlusOneConditionInput | null > | null,
-  not?: ModelPlusOneConditionInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  plusOneAttendeeId?: ModelIDInput | null,
-};
-
-export type UpdatePlusOneInput = {
-  id: string,
-  firstName?: string | null,
-  food?: Food | null,
-  lastName?: string | null,
-  isAttending?: boolean | null,
-  notes?: string | null,
-  plusOneAttendeeId?: string | null,
-};
-
-export type DeletePlusOneInput = {
   id: string,
 };
 
@@ -193,38 +144,18 @@ export type ModelAttendeeFilterInput = {
   lastName?: ModelStringInput | null,
   notes?: ModelStringInput | null,
   relatedAttendee?: ModelIDInput | null,
+  hasPlusOne?: ModelBooleanInput | null,
+  addedPlusOne?: ModelBooleanInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelAttendeeFilterInput | null > | null,
   or?: Array< ModelAttendeeFilterInput | null > | null,
   not?: ModelAttendeeFilterInput | null,
-  attendeePlusOneId?: ModelIDInput | null,
 };
 
 export type ModelAttendeeConnection = {
   __typename: "ModelAttendeeConnection",
   items:  Array<Attendee | null >,
-  nextToken?: string | null,
-};
-
-export type ModelPlusOneFilterInput = {
-  id?: ModelIDInput | null,
-  firstName?: ModelStringInput | null,
-  food?: ModelFoodInput | null,
-  lastName?: ModelStringInput | null,
-  isAttending?: ModelBooleanInput | null,
-  notes?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  and?: Array< ModelPlusOneFilterInput | null > | null,
-  or?: Array< ModelPlusOneFilterInput | null > | null,
-  not?: ModelPlusOneFilterInput | null,
-  plusOneAttendeeId?: ModelIDInput | null,
-};
-
-export type ModelPlusOneConnection = {
-  __typename: "ModelPlusOneConnection",
-  items:  Array<PlusOne | null >,
   nextToken?: string | null,
 };
 
@@ -236,11 +167,12 @@ export type ModelSubscriptionAttendeeFilterInput = {
   lastName?: ModelSubscriptionStringInput | null,
   notes?: ModelSubscriptionStringInput | null,
   relatedAttendee?: ModelSubscriptionIDInput | null,
+  hasPlusOne?: ModelSubscriptionBooleanInput | null,
+  addedPlusOne?: ModelSubscriptionBooleanInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionAttendeeFilterInput | null > | null,
   or?: Array< ModelSubscriptionAttendeeFilterInput | null > | null,
-  attendeePlusOneId?: ModelSubscriptionIDInput | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -278,20 +210,6 @@ export type ModelSubscriptionBooleanInput = {
   eq?: boolean | null,
 };
 
-export type ModelSubscriptionPlusOneFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  firstName?: ModelSubscriptionStringInput | null,
-  food?: ModelSubscriptionStringInput | null,
-  lastName?: ModelSubscriptionStringInput | null,
-  isAttending?: ModelSubscriptionBooleanInput | null,
-  notes?: ModelSubscriptionStringInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionPlusOneFilterInput | null > | null,
-  or?: Array< ModelSubscriptionPlusOneFilterInput | null > | null,
-  plusOneAttendeeId?: ModelSubscriptionIDInput | null,
-};
-
 export type CreateAttendeeMutationVariables = {
   input: CreateAttendeeInput,
   condition?: ModelAttendeeConditionInput | null,
@@ -304,24 +222,13 @@ export type CreateAttendeeMutation = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
   } | null,
 };
 
@@ -337,24 +244,13 @@ export type UpdateAttendeeMutation = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
   } | null,
 };
 
@@ -370,123 +266,13 @@ export type DeleteAttendeeMutation = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
-  } | null,
-};
-
-export type CreatePlusOneMutationVariables = {
-  input: CreatePlusOneInput,
-  condition?: ModelPlusOneConditionInput | null,
-};
-
-export type CreatePlusOneMutation = {
-  createPlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
-  } | null,
-};
-
-export type UpdatePlusOneMutationVariables = {
-  input: UpdatePlusOneInput,
-  condition?: ModelPlusOneConditionInput | null,
-};
-
-export type UpdatePlusOneMutation = {
-  updatePlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
-  } | null,
-};
-
-export type DeletePlusOneMutationVariables = {
-  input: DeletePlusOneInput,
-  condition?: ModelPlusOneConditionInput | null,
-};
-
-export type DeletePlusOneMutation = {
-  deletePlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
   } | null,
 };
 
@@ -501,24 +287,13 @@ export type GetAttendeeQuery = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
   } | null,
 };
 
@@ -540,66 +315,10 @@ export type ListAttendeesQuery = {
       lastName: string,
       notes?: string | null,
       relatedAttendee?: Array< string | null > | null,
+      hasPlusOne?: boolean | null,
+      addedPlusOne?: boolean | null,
       createdAt: string,
       updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetPlusOneQueryVariables = {
-  id: string,
-};
-
-export type GetPlusOneQuery = {
-  getPlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
-  } | null,
-};
-
-export type ListPlusOnesQueryVariables = {
-  filter?: ModelPlusOneFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListPlusOnesQuery = {
-  listPlusOnes?:  {
-    __typename: "ModelPlusOneConnection",
-    items:  Array< {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -616,24 +335,13 @@ export type OnCreateAttendeeSubscription = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
   } | null,
 };
 
@@ -648,24 +356,13 @@ export type OnUpdateAttendeeSubscription = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
   } | null,
 };
 
@@ -680,119 +377,12 @@ export type OnDeleteAttendeeSubscription = {
     firstName: string,
     isAttending?: boolean | null,
     food?: Food | null,
-    plusOne?:  {
-      __typename: "PlusOne",
-      id: string,
-      firstName: string,
-      food?: Food | null,
-      lastName: string,
-      isAttending?: boolean | null,
-      notes?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      plusOneAttendeeId?: string | null,
-    } | null,
     lastName: string,
     notes?: string | null,
     relatedAttendee?: Array< string | null > | null,
+    hasPlusOne?: boolean | null,
+    addedPlusOne?: boolean | null,
     createdAt: string,
     updatedAt: string,
-    attendeePlusOneId?: string | null,
-  } | null,
-};
-
-export type OnCreatePlusOneSubscriptionVariables = {
-  filter?: ModelSubscriptionPlusOneFilterInput | null,
-};
-
-export type OnCreatePlusOneSubscription = {
-  onCreatePlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
-  } | null,
-};
-
-export type OnUpdatePlusOneSubscriptionVariables = {
-  filter?: ModelSubscriptionPlusOneFilterInput | null,
-};
-
-export type OnUpdatePlusOneSubscription = {
-  onUpdatePlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
-  } | null,
-};
-
-export type OnDeletePlusOneSubscriptionVariables = {
-  filter?: ModelSubscriptionPlusOneFilterInput | null,
-};
-
-export type OnDeletePlusOneSubscription = {
-  onDeletePlusOne?:  {
-    __typename: "PlusOne",
-    id: string,
-    firstName: string,
-    food?: Food | null,
-    lastName: string,
-    isAttending?: boolean | null,
-    notes?: string | null,
-    Attendee?:  {
-      __typename: "Attendee",
-      id: string,
-      firstName: string,
-      isAttending?: boolean | null,
-      food?: Food | null,
-      lastName: string,
-      notes?: string | null,
-      relatedAttendee?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      attendeePlusOneId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    plusOneAttendeeId?: string | null,
   } | null,
 };

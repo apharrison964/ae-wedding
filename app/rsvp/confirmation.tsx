@@ -8,24 +8,36 @@ Amplify.configure(amplifyconfig);
 import React, { useEffect, useState } from 'react';
 import commonStyles from '../../styles/common.module.scss';
 import { Button, Flex, Grid, Input, Label, View } from '@aws-amplify/ui-react';
-import { AttendeeRelated } from '../model/attendee-related';
+import { FaCheck, FaX } from "react-icons/fa6";
+import RSVPConfirmationItem from './confirmation-item';
 
 
 
 
-const RSVPConfirmation = ({ attendeeRelated }) => {
+
+const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, setUpdateDone }) => {
+    // console.log('what is attendee', attendee);
+    // console.log('what is related attendees', relatedAttendees);
+    // console.log('what is plusOne', plusOne);
     return (
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>
-                <View className={commonStyles.headerDescriptionSub}>Please accept or decline for each person, and if accepting the invitation, choose a meal for each member of your party.</View>
+                <View className={commonStyles.headerDescriptionSub}>We've got your RSVP information saved below. You are welcome to leave this page and continue browsing the wedding website.</View>
 
                 
                 {/* <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                     <Label htmlFor="last_name">Last Name</Label> 
                     <Input value={lastNameValue} onChange={handleInputChange} id="last_name" name="last_name" />
                 </Flex> */}
-               <Flex paddingTop="1rem" justifyContent="center">
-                    HI!
+               <Flex paddingTop="1rem" width='100%' direction='column' alignItems='flex-start'>
+                    <RSVPConfirmationItem attendeeInfo={attendee}></RSVPConfirmationItem>
+
+                    { relatedAttendees.map(relatedAttendee => (
+                        <RSVPConfirmationItem key={relatedAttendee.id} attendeeInfo={relatedAttendee}></RSVPConfirmationItem>
+                    ))}
+                    {plusOne ? <RSVPConfirmationItem attendeeInfo={plusOne}></RSVPConfirmationItem> : null}
+
+                    <View fontWeight='300' fontSize='1.25rem' display='flex'>Something doesn't look right? <span style={{ fontWeight: '400', textDecoration: 'underline', cursor: 'pointer', paddingLeft: '0.25rem'}} onClick={() => setUpdateDone(false)}>Edit RSVP information</span></View>
                </Flex>
             </View>
         </Grid>

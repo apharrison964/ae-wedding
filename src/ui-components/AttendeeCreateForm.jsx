@@ -16,6 +16,7 @@ import {
   Radio,
   RadioGroupField,
   ScrollView,
+  SwitchField,
   Text,
   TextField,
   useTheme,
@@ -196,6 +197,8 @@ export default function AttendeeCreateForm(props) {
     lastName: "",
     notes: "",
     relatedAttendee: [],
+    hasPlusOne: false,
+    addedPlusOne: false,
     relatedAttendees: "",
   };
   const [firstName, setFirstName] = React.useState(initialValues.firstName);
@@ -207,6 +210,10 @@ export default function AttendeeCreateForm(props) {
   const [notes, setNotes] = React.useState(initialValues.notes);
   const [relatedAttendee, setRelatedAttendee] = React.useState(
     initialValues.relatedAttendee
+  );
+  const [hasPlusOne, setHasPlusOne] = React.useState(initialValues.hasPlusOne);
+  const [addedPlusOne, setAddedPlusOne] = React.useState(
+    initialValues.addedPlusOne
   );
   const [relatedAttendees, setRelatedAttendees] = React.useState(
     initialValues.relatedAttendees
@@ -220,6 +227,8 @@ export default function AttendeeCreateForm(props) {
     setNotes(initialValues.notes);
     setRelatedAttendee(initialValues.relatedAttendee);
     setCurrentRelatedAttendeeValue("");
+    setHasPlusOne(initialValues.hasPlusOne);
+    setAddedPlusOne(initialValues.addedPlusOne);
     setRelatedAttendees(initialValues.relatedAttendees);
     setErrors({});
   };
@@ -233,6 +242,8 @@ export default function AttendeeCreateForm(props) {
     lastName: [{ type: "Required" }],
     notes: [],
     relatedAttendee: [],
+    hasPlusOne: [],
+    addedPlusOne: [],
     relatedAttendees: [],
   };
   const runValidationTasks = async (
@@ -267,6 +278,8 @@ export default function AttendeeCreateForm(props) {
           lastName,
           notes,
           relatedAttendee,
+          hasPlusOne,
+          addedPlusOne,
           relatedAttendees,
         };
         const validationResponses = await Promise.all(
@@ -304,6 +317,8 @@ export default function AttendeeCreateForm(props) {
             lastName: modelFields.lastName,
             notes: modelFields.notes,
             relatedAttendee: modelFields.relatedAttendee,
+            hasPlusOne: modelFields.hasPlusOne,
+            addedPlusOne: modelFields.addedPlusOne,
           };
           await DataStore.save(new Attendee(modelFieldsToSave));
           if (onSuccess) {
@@ -336,6 +351,8 @@ export default function AttendeeCreateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -366,6 +383,8 @@ export default function AttendeeCreateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -407,6 +426,8 @@ export default function AttendeeCreateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -437,6 +458,8 @@ export default function AttendeeCreateForm(props) {
               lastName: value,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -467,6 +490,8 @@ export default function AttendeeCreateForm(props) {
               lastName,
               notes: value,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -493,6 +518,8 @@ export default function AttendeeCreateForm(props) {
               lastName,
               notes,
               relatedAttendee: values,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees,
             };
             const result = onChange(modelFields);
@@ -538,6 +565,70 @@ export default function AttendeeCreateForm(props) {
           {...getOverrideProps(overrides, "relatedAttendee")}
         ></TextField>
       </ArrayField>
+      <SwitchField
+        label="Has plus one"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={hasPlusOne}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              firstName,
+              isAttending,
+              food,
+              lastName,
+              notes,
+              relatedAttendee,
+              hasPlusOne: value,
+              addedPlusOne,
+              relatedAttendees,
+            };
+            const result = onChange(modelFields);
+            value = result?.hasPlusOne ?? value;
+          }
+          if (errors.hasPlusOne?.hasError) {
+            runValidationTasks("hasPlusOne", value);
+          }
+          setHasPlusOne(value);
+        }}
+        onBlur={() => runValidationTasks("hasPlusOne", hasPlusOne)}
+        errorMessage={errors.hasPlusOne?.errorMessage}
+        hasError={errors.hasPlusOne?.hasError}
+        {...getOverrideProps(overrides, "hasPlusOne")}
+      ></SwitchField>
+      <SwitchField
+        label="Added plus one"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={addedPlusOne}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              firstName,
+              isAttending,
+              food,
+              lastName,
+              notes,
+              relatedAttendee,
+              hasPlusOne,
+              addedPlusOne: value,
+              relatedAttendees,
+            };
+            const result = onChange(modelFields);
+            value = result?.addedPlusOne ?? value;
+          }
+          if (errors.addedPlusOne?.hasError) {
+            runValidationTasks("addedPlusOne", value);
+          }
+          setAddedPlusOne(value);
+        }}
+        onBlur={() => runValidationTasks("addedPlusOne", addedPlusOne)}
+        errorMessage={errors.addedPlusOne?.errorMessage}
+        hasError={errors.addedPlusOne?.hasError}
+        {...getOverrideProps(overrides, "addedPlusOne")}
+      ></SwitchField>
       <TextField
         label="Related attendees"
         value={relatedAttendees}
@@ -551,6 +642,8 @@ export default function AttendeeCreateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
               relatedAttendees: value,
             };
             const result = onChange(modelFields);

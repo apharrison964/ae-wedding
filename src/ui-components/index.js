@@ -43,7 +43,6 @@ export { default as NavBarHeader } from "./NavBarHeader";
 export { default as NavBarHeader2 } from "./NavBarHeader2";
 export { default as NavBarSide } from "./NavBarSide";
 export { default as Phx } from "./Phx";
-export { default as PlusOneUpdateForm } from "./PlusOneUpdateForm";
 export { default as ProductCard } from "./ProductCard";
 export { default as ProductDetail } from "./ProductDetail";
 export { default as ProfileCard } from "./ProfileCard";

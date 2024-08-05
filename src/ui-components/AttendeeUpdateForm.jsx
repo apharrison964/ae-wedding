@@ -197,6 +197,8 @@ export default function AttendeeUpdateForm(props) {
     lastName: "",
     notes: "",
     relatedAttendee: [],
+    hasPlusOne: false,
+    addedPlusOne: false,
   };
   const [firstName, setFirstName] = React.useState(initialValues.firstName);
   const [isAttending, setIsAttending] = React.useState(
@@ -207,6 +209,10 @@ export default function AttendeeUpdateForm(props) {
   const [notes, setNotes] = React.useState(initialValues.notes);
   const [relatedAttendee, setRelatedAttendee] = React.useState(
     initialValues.relatedAttendee
+  );
+  const [hasPlusOne, setHasPlusOne] = React.useState(initialValues.hasPlusOne);
+  const [addedPlusOne, setAddedPlusOne] = React.useState(
+    initialValues.addedPlusOne
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -220,6 +226,8 @@ export default function AttendeeUpdateForm(props) {
     setNotes(cleanValues.notes);
     setRelatedAttendee(cleanValues.relatedAttendee ?? []);
     setCurrentRelatedAttendeeValue("");
+    setHasPlusOne(cleanValues.hasPlusOne);
+    setAddedPlusOne(cleanValues.addedPlusOne);
     setErrors({});
   };
   const [attendeeRecord, setAttendeeRecord] = React.useState(attendeeModelProp);
@@ -243,6 +251,8 @@ export default function AttendeeUpdateForm(props) {
     lastName: [{ type: "Required" }],
     notes: [],
     relatedAttendee: [],
+    hasPlusOne: [],
+    addedPlusOne: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -276,6 +286,8 @@ export default function AttendeeUpdateForm(props) {
           lastName,
           notes,
           relatedAttendee,
+          hasPlusOne,
+          addedPlusOne,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -337,6 +349,8 @@ export default function AttendeeUpdateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
             };
             const result = onChange(modelFields);
             value = result?.firstName ?? value;
@@ -366,6 +380,8 @@ export default function AttendeeUpdateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
             };
             const result = onChange(modelFields);
             value = result?.isAttending ?? value;
@@ -395,6 +411,8 @@ export default function AttendeeUpdateForm(props) {
               lastName,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
             };
             const result = onChange(modelFields);
             value = result?.food ?? value;
@@ -440,6 +458,8 @@ export default function AttendeeUpdateForm(props) {
               lastName: value,
               notes,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
             };
             const result = onChange(modelFields);
             value = result?.lastName ?? value;
@@ -469,6 +489,8 @@ export default function AttendeeUpdateForm(props) {
               lastName,
               notes: value,
               relatedAttendee,
+              hasPlusOne,
+              addedPlusOne,
             };
             const result = onChange(modelFields);
             value = result?.notes ?? value;
@@ -494,6 +516,8 @@ export default function AttendeeUpdateForm(props) {
               lastName,
               notes,
               relatedAttendee: values,
+              hasPlusOne,
+              addedPlusOne,
             };
             const result = onChange(modelFields);
             values = result?.relatedAttendee ?? values;
@@ -538,6 +562,68 @@ export default function AttendeeUpdateForm(props) {
           {...getOverrideProps(overrides, "relatedAttendee")}
         ></TextField>
       </ArrayField>
+      <SwitchField
+        label="Has plus one"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={hasPlusOne}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              firstName,
+              isAttending,
+              food,
+              lastName,
+              notes,
+              relatedAttendee,
+              hasPlusOne: value,
+              addedPlusOne,
+            };
+            const result = onChange(modelFields);
+            value = result?.hasPlusOne ?? value;
+          }
+          if (errors.hasPlusOne?.hasError) {
+            runValidationTasks("hasPlusOne", value);
+          }
+          setHasPlusOne(value);
+        }}
+        onBlur={() => runValidationTasks("hasPlusOne", hasPlusOne)}
+        errorMessage={errors.hasPlusOne?.errorMessage}
+        hasError={errors.hasPlusOne?.hasError}
+        {...getOverrideProps(overrides, "hasPlusOne")}
+      ></SwitchField>
+      <SwitchField
+        label="Added plus one"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={addedPlusOne}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              firstName,
+              isAttending,
+              food,
+              lastName,
+              notes,
+              relatedAttendee,
+              hasPlusOne,
+              addedPlusOne: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.addedPlusOne ?? value;
+          }
+          if (errors.addedPlusOne?.hasError) {
+            runValidationTasks("addedPlusOne", value);
+          }
+          setAddedPlusOne(value);
+        }}
+        onBlur={() => runValidationTasks("addedPlusOne", addedPlusOne)}
+        errorMessage={errors.addedPlusOne?.errorMessage}
+        hasError={errors.addedPlusOne?.hasError}
+        {...getOverrideProps(overrides, "addedPlusOne")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
