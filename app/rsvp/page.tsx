@@ -52,15 +52,15 @@ const RSVP = () => {
         }
     }  
     const updatePlusOneFirstName = (plusOneFirstName: string) => {
-        if (plusOne) {
+        if (plusOne && plusOneFirstName !== '') {
             plusOne.firstName = plusOneFirstName;
             setPlusOne({...plusOne});
         }
     }
 
     const updatePlusOneLastName = (plusOneLastName: string) => {
-        if (plusOne) {
-            plusOne.lastName= plusOneLastName;
+        if (plusOne && plusOneLastName !== '') {
+            plusOne.lastName = plusOneLastName;
             setPlusOne({...plusOne});
         }
     }
@@ -139,11 +139,11 @@ const RSVP = () => {
     const updateData = async () => {
         setUpdateStarted(true);
         console.log('Submit', attendee, relatedAttendees, plusOne);
-        if (plusOne && attendee) {
+        if (plusOne && addPlusOne) {
             const updatePlusOne = {
                 ...plusOne,
                 isAttending: true,
-                relatedAttendee: [attendee.id]
+                relatedAttendee: [attendee?.id]
             }
             
             const newAttendee = await client.graphql( { query: createAttendee, variables: { input: updatePlusOne }});
@@ -266,7 +266,7 @@ const RSVP = () => {
                     setAddPlusOne={updatePlusOne}
                     updateSearchDone={setSearchDone}>
                 </RSVPList> : null }
-                { searchDone && updateDone && !updateStarted ? <RSVPConfirmation attendee={attendee} relatedAttendees={relatedAttendees} plusOne={plusOne} setUpdateDone={setUpdateDone}></RSVPConfirmation> : null }
+                { searchDone && updateDone && !updateStarted ? <RSVPConfirmation attendee={attendee} relatedAttendees={relatedAttendees} plusOne={plusOne} addPlusOne={addPlusOne} setUpdateDone={setUpdateDone}></RSVPConfirmation> : null }
                 { updateStarted ?  <Loader filledColor='rgb(171, 193, 171)' variation="linear" /> : null}
             </View>
         </Grid>

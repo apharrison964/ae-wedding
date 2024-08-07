@@ -15,11 +15,12 @@ import RSVPConfirmationItem from './confirmation-item';
 
 
 
-const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, setUpdateDone }) => {
+const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, addPlusOne, setUpdateDone }) => {
     return (
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>
                 <View className={commonStyles.headerDescriptionSub}>We've got your RSVP information saved below. You are welcome to leave this page and continue browsing the wedding website.</View>
+                <View className={commonStyles.headerDescriptionSub} style={{ textDecoration: 'underline', cursor: 'pointer'}} onClick={() => setUpdateDone(false)}>Something doesn't look right? Edit RSVP information</View>
 
                 
                 {/* <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
@@ -32,9 +33,8 @@ const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, setUpdateDone })
                     { relatedAttendees.map(relatedAttendee => (
                         <RSVPConfirmationItem key={relatedAttendee.id} attendeeInfo={relatedAttendee}></RSVPConfirmationItem>
                     ))}
-                    {plusOne ? <RSVPConfirmationItem attendeeInfo={plusOne}></RSVPConfirmationItem> : null}
+                    {plusOne && addPlusOne ? <RSVPConfirmationItem attendeeInfo={plusOne}></RSVPConfirmationItem> : null}
 
-                    <View fontWeight='300' fontSize='1.25rem' display='flex'>Something doesn't look right? <span style={{ fontWeight: '400', textDecoration: 'underline', cursor: 'pointer', paddingLeft: '0.25rem'}} onClick={() => setUpdateDone(false)}>Edit RSVP information</span></View>
                </Flex>
             </View>
         </Grid>

@@ -17,9 +17,9 @@ import { enumToFood } from '../helper/food-helper';
 
 const RSVPConfirmationItem = ({attendeeInfo}) => {
     return (
-    <View fontSize='1.25rem'>
-        <Flex alignItems='center'>{ attendeeInfo.isAttending ? <FaCheck color='green' /> : <FaX color='red' />}{attendeeInfo.firstName} {attendeeInfo.lastName} - {attendeeInfo.isAttending ? 'ACCEPT' : 'DECLINE' }</Flex>
-        { attendeeInfo.isAttending ? <Flex fontWeight='300'><FaCheck color='green' visibility='hidden'/>Meal Selection: { enumToFood(attendeeInfo.food) }</Flex> : null}
+    <View fontSize='1.25rem' paddingTop='1rem' width='100%'>
+        <Flex alignItems='center' justifyContent={{base: 'center', 'small': 'center'}}>{ attendeeInfo.isAttending ? <View display={{base: 'none', small: 'none', medium: 'grid', large: 'grid', xl: 'grid'}}><FaCheck color='green'/></View> : <View display={{base: 'none', small: 'none', medium: 'grid', large: 'grid', xl: 'grid'}}><FaX color='red'/></View>}{attendeeInfo.firstName} {attendeeInfo.lastName} - {attendeeInfo.isAttending ? 'ACCEPT' : 'DECLINE' }</Flex>
+        { attendeeInfo.isAttending ? <Flex fontWeight='300' justifyContent={{base: 'center', 'small': 'center'}}><View display={{base: 'none', small: 'none', medium: 'grid', large: 'grid', xl: 'grid'}}><FaCheck color='green' visibility='hidden'/></View>Meal Selection: { enumToFood(attendeeInfo.food) }</Flex> : null}
     </View>
     );
 }
