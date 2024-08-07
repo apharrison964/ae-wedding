@@ -139,11 +139,11 @@ const RSVP = () => {
     const updateData = async () => {
         setUpdateStarted(true);
         console.log('Submit', attendee, relatedAttendees, plusOne);
-        if (plusOne && addPlusOne) {
+        if (attendee && plusOne && addPlusOne) {
             const updatePlusOne = {
                 ...plusOne,
                 isAttending: true,
-                relatedAttendee: [attendee?.id]
+                relatedAttendee: [attendee.id]
             }
             
             const newAttendee = await client.graphql( { query: createAttendee, variables: { input: updatePlusOne }});
