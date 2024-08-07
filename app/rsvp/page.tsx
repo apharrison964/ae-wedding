@@ -32,6 +32,7 @@ const RSVP = () => {
     const [searchDone, setSearchDone] = useState<boolean>(false);
     const [updateDone, setUpdateDone] = useState<boolean>(false);
     const [updateStarted, setUpdateStarted] = useState<boolean>(false);
+    const [userNotFound, setUserNotFound] = useState<boolean>(false);
 
 
     const handleInputChange = (event) => {
@@ -208,13 +209,15 @@ const RSVP = () => {
         setAttendee(attendee);
 
         if (attendee) {
+            setUserNotFound(false);
             const related = findRelatedAttendees(attendee?.relatedAttendee as string[]);
             setRelatedAttendees(related);
             if (attendee.food) {
                 setUpdateDone(true);
             }
-
-        } 
+        } else {
+            setUserNotFound(true);
+        }
        
         setSearchDone(attendee ? true : false);
     } 
@@ -245,7 +248,7 @@ const RSVP = () => {
     return (
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>
-                { !searchDone ? <RSVPSearch firstNameValue={firstNameValue} lastNameValue={lastNameValue} findAttendee={findAttendee} handleInputChange={handleInputChange}></RSVPSearch> : null }
+                { !searchDone ? <RSVPSearch firstNameValue={firstNameValue} lastNameValue={lastNameValue} findAttendee={findAttendee} handleInputChange={handleInputChange} userNotFound={userNotFound}></RSVPSearch> : null }
                 { searchDone && !updateDone && !updateStarted ? 
                 <RSVPList 
                     relatedAttendees={relatedAttendees} 

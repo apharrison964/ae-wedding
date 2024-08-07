@@ -37,6 +37,7 @@ const RSVPList = ({
     const [childRelated, setChildRelated] = useState<Attendee[]>();
     const [childPlusOne, setChildPlusOne] = useState<CreateAttendeeInput>();
     const [childAddPlusOne, setChildAddPlusOne] = useState<boolean>();
+    const [submitPressed, setSubmitPressed] = useState<boolean>();
 
 
     
@@ -55,6 +56,18 @@ const RSVPList = ({
         } else {
             updateRelatedFood(Food[food], id!);
         }
+    }
+
+    const checkFields = () => {
+        setSubmitPressed(true);
+        if (!childAttendee?.food) {
+            // deal with no food here
+        }
+        if (childPlusOne && !childPlusOne.food) {
+            // deal with the plus one having no food, also need to deal with them not having name
+        }
+        // deal with related not being set
+        updateData()
     }
 
     useEffect(() => {
@@ -169,7 +182,7 @@ const RSVPList = ({
                     <Button
                         variation="primary"
                         loadingText="Loading, please wait"
-                        onClick={() => updateData() }>
+                        onClick={() => checkFields() }>
                         Finish
                     </Button>
                 </Flex>
