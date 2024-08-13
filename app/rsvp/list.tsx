@@ -120,7 +120,6 @@ const RSVPList = ({
                                 onChange={(e) => updateAttendeeNotes(e.target.value)} // update this to have the parent handle it.
                                 placeholder="Please give any additonal information needed for dietary restrictions."
                                 rows={3} />
-
                         </Flex> : null}
                 </Flex>
                 {childAttendee?.isAttending === true && childAttendee?.hasPlusOne && childAttendee?.relatedAttendee?.length === 0 ?

@@ -146,6 +146,10 @@ const RSVP = () => {
                 relatedAttendee: [attendee.id]
             }
             
+            if (updatePlusOne.notes) {
+                updatePlusOne.notes = updatePlusOne.notes.replace(/[^\w\s!?,.'/-/_]/, '');
+            }
+            
             const newAttendee = await client.graphql( { query: createAttendee, variables: { input: updatePlusOne }});
             if (attendeesList) {
                 attendeesList?.push(newAttendee.data.createAttendee);
@@ -173,7 +177,7 @@ const RSVP = () => {
                     isAttending: ra.isAttending,
                     food: ra.food,
                     lastName: ra.lastName,
-                    notes: ra.notes,
+                    notes: ra.notes?.replace(/[^\w\s!?,.'/-/_]/, ''),
                     relatedAttendee: ra.relatedAttendee
                 }
                 const update = await client.graphql({ query: updateAttendee, variables: { input }});
@@ -187,7 +191,7 @@ const RSVP = () => {
                 isAttending: attendee.isAttending,
                 food: attendee.food,
                 lastName: attendee.lastName,
-                notes: attendee.notes,
+                notes: attendee.notes?.replace(/[^\w\s!?,.'/-/_]/, ''),
                 relatedAttendee: attendee.relatedAttendee,
                 hasPlusOne: attendee.hasPlusOne,
                 addedPlusOne: attendee.addedPlusOne
