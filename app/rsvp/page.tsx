@@ -139,7 +139,6 @@ const RSVP = () => {
 
     const updateData = async () => {
         setUpdateStarted(true);
-        console.log('Submit', attendee, relatedAttendees, plusOne);
         if (attendee && plusOne && addPlusOne) {
             const updatePlusOne = {
                 ...plusOne,
@@ -205,7 +204,7 @@ const RSVP = () => {
     }
 
     const findAttendee = () => {
-        const attendee = attendeesList?.find(attendee => attendee.firstName.toLowerCase() === firstNameValue.toLowerCase() && attendee.lastName.toLowerCase() === lastNameValue.toLowerCase());
+        const attendee = attendeesList?.find(attendee => attendee.firstName.trim().toLowerCase() === firstNameValue.trim().toLowerCase() && attendee.lastName.trim().toLowerCase() === lastNameValue.trim().toLowerCase());
         setAttendee(attendee);
 
         if (attendee) {
@@ -235,7 +234,6 @@ const RSVP = () => {
     useEffect(() => {
         async function getAttendees() {
             const response = await client.graphql({ query: listAttendees });
-            console.log('RESULT', response.data.listAttendees);
             setAttendeesList(response.data.listAttendees.items)
         };
     

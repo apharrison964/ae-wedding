@@ -39,9 +39,6 @@ const RSVPList = ({
     const [childAddPlusOne, setChildAddPlusOne] = useState<boolean>();
     const [submitPressed, setSubmitPressed] = useState<boolean>();
 
-
-    
-
     const updateAttending = (isAttending: string, type: string, id?: string) => {
         if (type === 'attendee') {
             updateAttendeeIsAttending(isAttending === 'true');
@@ -60,14 +57,14 @@ const RSVPList = ({
 
     const checkFields = () => {
         setSubmitPressed(true);
-        if (!childAttendee?.food) {
-            // deal with no food here
+        setTimeout(test);
+        
+    }
+
+    const test = () => {
+        if (document.querySelectorAll('.validation-error').length === 0) {
+            updateData();
         }
-        if (childPlusOne && !childPlusOne.food) {
-            // deal with the plus one having no food, also need to deal with them not having name
-        }
-        // deal with related not being set
-        updateData()
     }
 
     useEffect(() => {
@@ -98,6 +95,7 @@ const RSVPList = ({
                                 <Radio value={Food.SHRIMP} checked={childAttendee.food === Food.SHRIMP}>Shrimp</Radio>
                                 <Radio value={Food.OTHER} checked={childAttendee.food === Food.OTHER}>Vegetarian</Radio>
                             </RadioGroupField>
+                            { submitPressed && childAttendee?.food === null ? <div className="validation-error">Please select an option.</div> : null}
                             <TextAreaField width="100%" textAlign="left"
                                 descriptiveText="Any additional details on the food selections"
                                 labelHidden={true}
@@ -116,19 +114,23 @@ const RSVPList = ({
                         <Radio value="true">Yes</Radio>
                         <Radio value="false">No</Radio>
                     </RadioGroupField>
+                    { submitPressed && addPlusOne === undefined ? <div className="validation-error">Please select an option.</div> : null}
+
                     { childAddPlusOne === true ? 
-                    
                     <Flex width='100%' style={{ paddingBlockStart: 0 }} direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                         <Label htmlFor='attendee-plus-one-first'>Plus One First Name</Label>
                         <Input id='attendee-plus-one-first' value={childPlusOne!.firstName} onChange={(e) => updatePlusOneFirstName(e.target.value)}></Input>
+                        { submitPressed && childPlusOne?.firstName === '' ? <div className="validation-error">Please enter the first name of your plus one. If you don't know at this time, you can put TBD.</div> : null}
                         <Label htmlFor='attendee-plus-one-first'>Plus One Last Name</Label>
                         <Input id='attendee-plus-one-first' value={childPlusOne!.lastName} onChange={(e) => updatePlusOneLastName(e.target.value)}></Input>
+                        { submitPressed && childPlusOne?.lastName === '' ? <div className="validation-error">Please enter the last name of your plus one. If you don't know at this time, you can put TBD.</div> : null}
                         <Label htmlFor="attendee-plus-one-meal">Meal Selection</Label>
                             <RadioGroupField id="attendee-plus-one-meal" legendHidden={true} direction="row" legend="Meal Selection" name="attendee-plus-one-meal" onChange={(e) => updatePlusOneFood(Food[e.target.value])}>
                                 <Radio value={Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
                                 <Radio value={Food.SHRIMP}>Shrimp</Radio>
                                 <Radio value={Food.OTHER}>Vegetarian</Radio>
                             </RadioGroupField>
+                            { submitPressed && (!childPlusOne?.food || childPlusOne?.food === null) ? <div className="validation-error">Please select an option.</div> : null}
                             <TextAreaField width="100%" textAlign="left"
                                 descriptiveText="Any additional details on the food selections"
                                 labelHidden={true}
@@ -159,6 +161,7 @@ const RSVPList = ({
                                 <Radio value={Food.SHRIMP} checked={relatedAttendee.food === Food.SHRIMP}>Shrimp</Radio>
                                 <Radio value={Food.OTHER} checked={relatedAttendee.food === Food.OTHER}>Vegetarian</Radio>
                             </RadioGroupField>
+                            { submitPressed && relatedAttendee?.food === null ? <div className="validation-error">Please select an option.</div> : null}
                            <TextAreaField width="100%" textAlign="left"
                                 descriptiveText="Any additional details on the food selections"
                                 labelHidden={true}
