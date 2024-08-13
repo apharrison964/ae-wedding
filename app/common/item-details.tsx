@@ -28,6 +28,13 @@ const ItemDetails = ( { details }) => {
         large: '1rem'
     }
 
+    const descriptionTextAlign = {
+        base: 'center',
+        small: 'center',
+        medium: 'inherit',
+        large: 'inherit'
+    }
+
     return (
         <>
             { details.map(detail => (
@@ -39,8 +46,8 @@ const ItemDetails = ( { details }) => {
                             <p className={commonStyles.subtitle}>{detail.subtitle2}</p>
                         </View>
                         <View paddingLeft={itemDetailPadding} style={{ borderLeft }} className={commonStyles.infoContainerItemDetails}>
-                            <View as="p" paddingRight={itemDetailPadding} className={commonStyles.itemDetail}>
-                                {detail.description}
+                            <View as="p" paddingRight={itemDetailPadding} textAlign={descriptionTextAlign} className={commonStyles.itemDetail}>
+                                { detail.description }
                             </View>
                         </View>
                     </Flex>
