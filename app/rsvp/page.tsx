@@ -53,14 +53,14 @@ const RSVP = () => {
         }
     }  
     const updatePlusOneFirstName = (plusOneFirstName: string) => {
-        if (plusOne && plusOneFirstName !== '') {
+        if (plusOne) {
             plusOne.firstName = plusOneFirstName;
             setPlusOne({...plusOne});
         }
     }
 
     const updatePlusOneLastName = (plusOneLastName: string) => {
-        if (plusOne && plusOneLastName !== '') {
+        if (plusOne) {
             plusOne.lastName = plusOneLastName;
             setPlusOne({...plusOne});
         }

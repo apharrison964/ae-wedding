@@ -10,20 +10,21 @@ import commonStyles from '../../styles/common.module.scss';
 import { Button, Flex, Grid, Input, Label, Radio, RadioGroupField, TextAreaField, View } from '@aws-amplify/ui-react';
 import { AttendeeRelatedProps } from '../model/attendee-info';
 import { Attendee, CreateAttendeeInput, Food } from '../../src/API';
+import { nameRegex, textBoxRegex } from '../constants/regex-constants';
 
 
 
-const RSVPList = ({ 
-    attendee, 
-    relatedAttendees, 
+const RSVPList = ({
+    attendee,
+    relatedAttendees,
     addPlusOne,
     plusOne,
-    updateAttendeeIsAttending, 
-    updateAttendeeFood, 
-    updateRelatedAttendeeIsAttending, 
-    updateRelatedFood, 
-    updateData, 
-    updateRelatedNotes, 
+    updateAttendeeIsAttending,
+    updateAttendeeFood,
+    updateRelatedAttendeeIsAttending,
+    updateRelatedFood,
+    updateData,
+    updateRelatedNotes,
     updateAttendeeNotes,
     updatePlusOneFirstName,
     updatePlusOneLastName,
@@ -31,7 +32,7 @@ const RSVPList = ({
     updatePlusOneNotes,
     setAddPlusOne,
     updateSearchDone
-    }: AttendeeRelatedProps) => {
+}: AttendeeRelatedProps) => {
 
     const [childAttendee, setChildAttendee] = useState<Attendee>();
     const [childRelated, setChildRelated] = useState<Attendee[]>();
@@ -58,13 +59,27 @@ const RSVPList = ({
     const checkFields = () => {
         setSubmitPressed(true);
         setTimeout(test);
-        
+
     }
 
     const test = () => {
         if (document.querySelectorAll('.validation-error').length === 0) {
             updateData();
         }
+    }
+
+    const checkChildPlusOneInput = (type) => {
+        if (type === 'firstName') {
+            if (childPlusOne) {
+                return (childPlusOne?.firstName === '' || !nameRegex.test(childPlusOne.firstName))
+            }
+        } else if (type === 'lastName') {
+            if (childPlusOne) {
+                return (childPlusOne?.lastName === '' || !nameRegex.test(childPlusOne.lastName))
+            }
+        }
+
+        return false;
     }
 
     useEffect(() => {
@@ -81,13 +96,13 @@ const RSVPList = ({
                 <View className={commonStyles.headerDescriptionSub}>The main course will be a butternut squash ravioli, with your choice of grilled chicken or brown butter shrimp. If you have any dietary restictions, you will be able to note them.</View>
 
                 <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start" width="100%">
-                        <View className={commonStyles.headerDescriptionSubheader}>{attendee.firstName} {attendee.lastName}</View>
-                        <Label htmlFor="attendee-rsvp">RSVP Status</Label>
-                        <RadioGroupField id="attendee-rsvp" legendHidden={true} direction="row" legend="RSVP Status" name="attendee-rsvp" onChange={(e) => updateAttending(e.target.value, 'attendee') }>
-                            <Radio value="true" checked={childAttendee?.isAttending === true}>Accept</Radio>
-                            <Radio value="false" checked={childAttendee?.isAttending === false}>Decline</Radio>
-                        </RadioGroupField>
-                   { childAttendee?.isAttending === true ?  
+                    <View className={commonStyles.headerDescriptionSubheader}>{attendee.firstName} {attendee.lastName}</View>
+                    <Label htmlFor="attendee-rsvp">RSVP Status</Label>
+                    <RadioGroupField id="attendee-rsvp" legendHidden={true} direction="row" legend="RSVP Status" name="attendee-rsvp" onChange={(e) => updateAttending(e.target.value, 'attendee')}>
+                        <Radio value="true" checked={childAttendee?.isAttending === true}>Accept</Radio>
+                        <Radio value="false" checked={childAttendee?.isAttending === false}>Decline</Radio>
+                    </RadioGroupField>
+                    {childAttendee?.isAttending === true ?
                         <Flex width="100%" direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                             <Label htmlFor="attendee-meal">Meal Selection</Label>
                             <RadioGroupField id="attendee-meal" legendHidden={true} direction="row" legend="Meal Selection" name="attendee-meal" onChange={(e) => updateFood(e.target.value, 'attendee')}>
@@ -95,7 +110,7 @@ const RSVPList = ({
                                 <Radio value={Food.SHRIMP} checked={childAttendee.food === Food.SHRIMP}>Shrimp</Radio>
                                 <Radio value={Food.OTHER} checked={childAttendee.food === Food.OTHER}>Vegetarian</Radio>
                             </RadioGroupField>
-                            { submitPressed && childAttendee?.food === null ? <div className="validation-error">Please select an option.</div> : null}
+                            {submitPressed && childAttendee?.food === null ? <div className="validation-error">Please select an option.</div> : null}
                             <TextAreaField width="100%" textAlign="left"
                                 descriptiveText="Any additional details on the food selections"
                                 labelHidden={true}
@@ -104,65 +119,65 @@ const RSVPList = ({
                                 value={childAttendee.notes ? childAttendee.notes : ''}
                                 onChange={(e) => updateAttendeeNotes(e.target.value)} // update this to have the parent handle it.
                                 placeholder="Please give any additonal information needed for dietary restrictions."
-                                rows={3}/> 
+                                rows={3} />
+
                         </Flex> : null}
                 </Flex>
-                {childAttendee?.isAttending === true && childAttendee?.hasPlusOne && childAttendee?.relatedAttendee?.length === 0 ? 
-                <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start" width='100%'>
-                    <Label htmlFor="attendee-rsvp">Is an additional person attending with you?</Label>
-                    <RadioGroupField id="attendee-plusone" legendHidden={true} direction="row" legend="Plus One Status" name="attendee-plusone" onChange={(e) => setAddPlusOne(e.target.value === 'true') }>
-                        <Radio value="true">Yes</Radio>
-                        <Radio value="false">No</Radio>
-                    </RadioGroupField>
-                    { submitPressed && addPlusOne === undefined ? <div className="validation-error">Please select an option.</div> : null}
+                {childAttendee?.isAttending === true && childAttendee?.hasPlusOne && childAttendee?.relatedAttendee?.length === 0 ?
+                    <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start" width='100%'>
+                        <Label htmlFor="attendee-rsvp">Is an additional person attending with you?</Label>
+                        <RadioGroupField id="attendee-plusone" legendHidden={true} direction="row" legend="Plus One Status" name="attendee-plusone" onChange={(e) => setAddPlusOne(e.target.value === 'true')}>
+                            <Radio value="true">Yes</Radio>
+                            <Radio value="false">No</Radio>
+                        </RadioGroupField>
+                        {submitPressed && addPlusOne === undefined ? <div className="validation-error">Please select an option.</div> : null}
 
-                    { childAddPlusOne === true ? 
-                    <Flex width='100%' style={{ paddingBlockStart: 0 }} direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
-                        <Label htmlFor='attendee-plus-one-first'>Plus One First Name</Label>
-                        <Input id='attendee-plus-one-first' value={childPlusOne!.firstName} onChange={(e) => updatePlusOneFirstName(e.target.value)}></Input>
-                        { submitPressed && childPlusOne?.firstName === '' ? <div className="validation-error">Please enter the first name of your plus one. If you don't know at this time, you can put TBD.</div> : null}
-                        <Label htmlFor='attendee-plus-one-first'>Plus One Last Name</Label>
-                        <Input id='attendee-plus-one-first' value={childPlusOne!.lastName} onChange={(e) => updatePlusOneLastName(e.target.value)}></Input>
-                        { submitPressed && childPlusOne?.lastName === '' ? <div className="validation-error">Please enter the last name of your plus one. If you don't know at this time, you can put TBD.</div> : null}
-                        <Label htmlFor="attendee-plus-one-meal">Meal Selection</Label>
-                            <RadioGroupField id="attendee-plus-one-meal" legendHidden={true} direction="row" legend="Meal Selection" name="attendee-plus-one-meal" onChange={(e) => updatePlusOneFood(Food[e.target.value])}>
-                                <Radio value={Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
-                                <Radio value={Food.SHRIMP}>Shrimp</Radio>
-                                <Radio value={Food.OTHER}>Vegetarian</Radio>
-                            </RadioGroupField>
-                            { submitPressed && (!childPlusOne?.food || childPlusOne?.food === null) ? <div className="validation-error">Please select an option.</div> : null}
-                            <TextAreaField width="100%" textAlign="left"
-                                descriptiveText="Any additional details on the food selections"
-                                labelHidden={true}
-                                label="food selection details"
-                                name="dietery_info"
-                                value={childPlusOne!.notes ? childPlusOne!.notes : ''}
-                                onChange={(e) => updatePlusOneNotes(e.target.value)}
-                                placeholder="Please give any additonal information needed for dietary restrictions."
-                                rows={3}/> 
-                          
+                        {childAddPlusOne === true ?
+                            <Flex width='100%' style={{ paddingBlockStart: 0 }} direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
+                                <Label htmlFor='attendee-plus-one-first'>Plus One First Name</Label>
+                                <Input id='attendee-plus-one-first' value={childPlusOne!.firstName} onChange={(e) => updatePlusOneFirstName(e.target.value)}></Input>
+                                {submitPressed && checkChildPlusOneInput('firstName') ? <div className="validation-error">Please enter the first name of your plus one. If you don't know at this time, you can put TBD.</div> : null}
+                                <Label htmlFor='attendee-plus-one-first'>Plus One Last Name</Label>
+                                <Input id='attendee-plus-one-first' value={childPlusOne!.lastName} onChange={(e) => updatePlusOneLastName(e.target.value)}></Input>
+                                {submitPressed && checkChildPlusOneInput('lastName') ? <div className="validation-error">Please enter the last name of your plus one. If you don't know at this time, you can put TBD.</div> : null}
+                                <Label htmlFor="attendee-plus-one-meal">Meal Selection</Label>
+                                <RadioGroupField id="attendee-plus-one-meal" legendHidden={true} direction="row" legend="Meal Selection" name="attendee-plus-one-meal" onChange={(e) => updatePlusOneFood(Food[e.target.value])}>
+                                    <Radio value={Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
+                                    <Radio value={Food.SHRIMP}>Shrimp</Radio>
+                                    <Radio value={Food.OTHER}>Vegetarian</Radio>
+                                </RadioGroupField>
+                                {submitPressed && (!childPlusOne?.food || childPlusOne?.food === null) ? <div className="validation-error">Please select an option.</div> : null}
+                                <TextAreaField width="100%" textAlign="left"
+                                    descriptiveText="Any additional details on the food selections"
+                                    labelHidden={true}
+                                    label="food selection details"
+                                    name="dietery_info"
+                                    value={childPlusOne!.notes ? childPlusOne!.notes : ''}
+                                    onChange={(e) => updatePlusOneNotes(e.target.value)}
+                                    placeholder="Please give any additonal information needed for dietary restrictions."
+                                    rows={3} />
+                            </Flex>
+
+                            : null}
                     </Flex>
-                    
                     : null}
-                </Flex>
-                : null}
                 {childRelated?.map(relatedAttendee => (
                     <Flex key={relatedAttendee.id} direction="column" gap="small" paddingTop="2rem" alignItems="flex-start" width="100%">
                         <View className={commonStyles.headerDescriptionSubheader}>{relatedAttendee.firstName} {relatedAttendee.lastName}</View>
-                            <Label htmlFor={`related-${relatedAttendee.id}-rsvp`}>RSVP Status</Label>
-                            <RadioGroupField id={`related-${relatedAttendee.id}-rsvp`} legendHidden={true} direction="row" legend="RSVP Status" name={`related-${relatedAttendee.id}-rsvp`} onChange={(e) => updateAttending(e.target.value, 'related', relatedAttendee.id) }>
-                                <Radio value="true" checked={relatedAttendee.isAttending === true}>Accept</Radio>
-                                <Radio value="false" checked={relatedAttendee.isAttending === false}>Decline</Radio>
-                            </RadioGroupField>
-                        { relatedAttendee.isAttending ? <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start" width='100%'>
+                        <Label htmlFor={`related-${relatedAttendee.id}-rsvp`}>RSVP Status</Label>
+                        <RadioGroupField id={`related-${relatedAttendee.id}-rsvp`} legendHidden={true} direction="row" legend="RSVP Status" name={`related-${relatedAttendee.id}-rsvp`} onChange={(e) => updateAttending(e.target.value, 'related', relatedAttendee.id)}>
+                            <Radio value="true" checked={relatedAttendee.isAttending === true}>Accept</Radio>
+                            <Radio value="false" checked={relatedAttendee.isAttending === false}>Decline</Radio>
+                        </RadioGroupField>
+                        {relatedAttendee.isAttending ? <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start" width='100%'>
                             <Label htmlFor={`related-${relatedAttendee.id}-meal`}>Meal Selection</Label>
                             <RadioGroupField id={`related-${relatedAttendee.id}-meal`} legendHidden={true} direction="row" legend="Meal Selection" name={`related-${relatedAttendee.id}-meal`} onChange={(e) => updateFood(e.target.value, 'related', relatedAttendee.id)}>
                                 <Radio value={Food.GRILLED_CHICKEN} checked={relatedAttendee.food === Food.GRILLED_CHICKEN}>Grilled Chicken</Radio>
                                 <Radio value={Food.SHRIMP} checked={relatedAttendee.food === Food.SHRIMP}>Shrimp</Radio>
                                 <Radio value={Food.OTHER} checked={relatedAttendee.food === Food.OTHER}>Vegetarian</Radio>
                             </RadioGroupField>
-                            { submitPressed && relatedAttendee?.food === null ? <div className="validation-error">Please select an option.</div> : null}
-                           <TextAreaField width="100%" textAlign="left"
+                            {submitPressed && relatedAttendee?.food === null ? <div className="validation-error">Please select an option.</div> : null}
+                            <TextAreaField width="100%" textAlign="left"
                                 descriptiveText="Any additional details on the food selections"
                                 labelHidden={true}
                                 label="food selection details"
@@ -170,7 +185,7 @@ const RSVPList = ({
                                 value={relatedAttendee.notes ? relatedAttendee.notes : ''}
                                 onChange={(e) => updateRelatedNotes(e.target.value, relatedAttendee.id)} // update this to have the parent handle it.
                                 placeholder="Please give any additonal information needed for dietary restrictions."
-                                rows={3}/> 
+                                rows={3} />
                         </Flex> : null}
                     </Flex>
 
@@ -185,7 +200,7 @@ const RSVPList = ({
                     <Button
                         variation="primary"
                         loadingText="Loading, please wait"
-                        onClick={() => checkFields() }>
+                        onClick={() => checkFields()}>
                         Finish
                     </Button>
                 </Flex>

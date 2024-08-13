@@ -8,20 +8,21 @@ Amplify.configure(amplifyconfig);
 import React, { useState } from 'react';
 import commonStyles from '../../styles/common.module.scss';
 import { Button, Flex, Grid, Input, Label, View } from '@aws-amplify/ui-react';
+import { nameRegex } from '../constants/regex-constants';
 
 
 const RSVPSearch = ({ firstNameValue, lastNameValue, handleInputChange, userNotFound, findAttendee}) => {
     const [submitPressed, setSubmitPressed] = useState(false);
+
     
     const search = () => {
         setSubmitPressed(true);
         setTimeout(checkNames);
-        
     }
 
     const checkNames = () => {
-        if (firstNameValue.length > 0 && lastNameValue.length > 0) {
-            findAttendee()
+        if (firstNameValue.length > 0 && lastNameValue.length > 0 && nameRegex.test(firstNameValue) && nameRegex.test(lastNameValue)) {
+            findAttendee();
         }
     }
 
@@ -37,12 +38,12 @@ const RSVPSearch = ({ firstNameValue, lastNameValue, handleInputChange, userNotF
                 <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                     <Label htmlFor="first_name">First Name</Label>
                     <Input value={firstNameValue} onChange={handleInputChange} id="first_name" name="first_name" />
-                    { submitPressed && firstNameValue.length === 0 ? <div className="validation-error">Please enter a valid first name.</div> : null}
+                    { submitPressed && (firstNameValue.length === 0 || nameRegex.test(firstNameValue) === false) ? <div className="validation-error">Please enter a valid first name.</div> : null}
                 </Flex>
                 <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                     <Label htmlFor="last_name">Last Name</Label> 
                     <Input value={lastNameValue} onChange={handleInputChange} id="last_name" name="last_name" />
-                    { submitPressed && lastNameValue.length === 0 ? <div className="validation-error">Please enter a valid last name.</div> : null}
+                    { submitPressed && (lastNameValue.length === 0 || nameRegex.test(lastNameValue) === false) ? <div className="validation-error">Please enter a valid last name.</div> : null}
                 </Flex>
                 {
                     userNotFound === true ?

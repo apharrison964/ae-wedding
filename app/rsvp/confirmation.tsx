@@ -21,6 +21,7 @@ const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, addPlusOne, setU
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>
                 <View className={commonStyles.headerDescriptionSub}>We've got your RSVP information saved below. You are welcome to leave this page and continue browsing the wedding website.</View>
                 <View className={commonStyles.headerDescriptionSub} style={{ textDecoration: 'underline', cursor: 'pointer'}} onClick={() => setUpdateDone(false)}>Something doesn't look right? Edit RSVP information</View>
+                <View style={{display: 'inline'}} className={commonStyles.headerDescriptionSub}>If you have any questions, take a look at the FAQ page or reach out to <a style={{ textDecoration: 'underline' }} href="mailto:eaharrisonwedding2024@gmail.com">Allie & Elizabeth</a></View>
 
                <Flex paddingTop="1rem" width='100%' direction='column' alignItems='flex-start'>
                     <RSVPConfirmationItem attendeeInfo={attendee}></RSVPConfirmationItem>
