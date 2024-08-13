@@ -175,7 +175,7 @@ const RSVPList = ({
                     </Flex>
 
                 ))}
-                <Flex paddingTop="1rem" justifyContent="center">
+                <Flex paddingTop="1rem" paddingBottom="1rem" justifyContent="center">
                     <Button
                         variation="primary"
                         loadingText="Loading, please wait"

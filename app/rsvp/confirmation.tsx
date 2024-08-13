@@ -22,11 +22,6 @@ const RSVPConfirmation = ({attendee, relatedAttendees, plusOne, addPlusOne, setU
                 <View className={commonStyles.headerDescriptionSub}>We've got your RSVP information saved below. You are welcome to leave this page and continue browsing the wedding website.</View>
                 <View className={commonStyles.headerDescriptionSub} style={{ textDecoration: 'underline', cursor: 'pointer'}} onClick={() => setUpdateDone(false)}>Something doesn't look right? Edit RSVP information</View>
 
-                
-                {/* <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
-                    <Label htmlFor="last_name">Last Name</Label> 
-                    <Input value={lastNameValue} onChange={handleInputChange} id="last_name" name="last_name" />
-                </Flex> */}
                <Flex paddingTop="1rem" width='100%' direction='column' alignItems='flex-start'>
                     <RSVPConfirmationItem attendeeInfo={attendee}></RSVPConfirmationItem>
 

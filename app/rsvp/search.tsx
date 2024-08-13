@@ -5,16 +5,26 @@ import amplifyconfig from '../../src/amplifyconfiguration.json';
 
 Amplify.configure(amplifyconfig);
 
-import React, { useEffect, useState } from 'react';
-import { generateClient } from 'aws-amplify/api';
-import { listAttendees } from '../../src/graphql/queries';
+import React, { useState } from 'react';
 import commonStyles from '../../styles/common.module.scss';
 import { Button, Flex, Grid, Input, Label, View } from '@aws-amplify/ui-react';
-import { Attendee } from '../../src/API';
-
 
 
 const RSVPSearch = ({ firstNameValue, lastNameValue, handleInputChange, userNotFound, findAttendee}) => {
+    const [submitPressed, setSubmitPressed] = useState(false);
+    
+    const search = () => {
+        setSubmitPressed(true);
+        setTimeout(checkNames);
+        
+    }
+
+    const checkNames = () => {
+        if (firstNameValue.length > 0 && lastNameValue.length > 0) {
+            findAttendee()
+        }
+    }
+
     return (
         <Grid className={commonStyles.headerDescription} templateColumns={'1fr 1fr 1fr 1fr 1fr 1fr'}>
             <View columnStart={{ xl: '2', large: '2', small: '1', medium: '2', base: '1'}} columnEnd={{ xl: '6', large: '6', small: '-1', medium: '6', base: '-1'}} row={2}>
@@ -27,19 +37,26 @@ const RSVPSearch = ({ firstNameValue, lastNameValue, handleInputChange, userNotF
                 <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                     <Label htmlFor="first_name">First Name</Label>
                     <Input value={firstNameValue} onChange={handleInputChange} id="first_name" name="first_name" />
+                    { submitPressed && firstNameValue.length === 0 ? <div className="validation-error">Please enter a valid first name.</div> : null}
                 </Flex>
                 <Flex direction="column" gap="small" paddingTop="2rem" alignItems="flex-start">
                     <Label htmlFor="last_name">Last Name</Label> 
                     <Input value={lastNameValue} onChange={handleInputChange} id="last_name" name="last_name" />
+                    { submitPressed && lastNameValue.length === 0 ? <div className="validation-error">Please enter a valid last name.</div> : null}
                 </Flex>
                 {
-                    userNotFound === true ? <View paddingTop='1rem' color='red' fontSize='1.15rem'>Hmm, we are having trouble finding your name. Please try again, and make sure your name matches up with the invitaion. If you are still having trouble, please contact Allie and Elizabeth at eaharrisonwedding2024@gmail.com</View> : null
+                    userNotFound === true ?
+                        <View paddingTop='1rem' color='red' style={{ display: 'flex', flexDirection: 'column', gap: '1rem'}} >
+                            <div>Hmm, we are having trouble finding your name.</div>
+                            <div>Please try again, and make sure your name matches up with the invitation.</div>
+                            <div>If you are still having trouble, please contact <a style={{ textDecoration: 'underline' }} href="mailto:eaharrisonwedding2024@gmail.com">Allie & Elizabeth</a></div>
+                         </View> : null
                 }
-               <Flex paddingTop="1rem" justifyContent="center">
+               <Flex paddingTop="1rem" paddingBottom="1rem" justifyContent="center">
                     <Button
                         variation="primary"
                         loadingText="Loading, please wait"
-                        onClick={() => findAttendee() }>
+                        onClick={() => search() }>
                         Find
                     </Button>
                </Flex>
