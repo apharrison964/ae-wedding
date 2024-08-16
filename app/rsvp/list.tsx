@@ -118,7 +118,7 @@ const RSVPList = ({
                                 name="dietery_info"
                                 value={childAttendee.notes ? childAttendee.notes : ''}
                                 onChange={(e) => updateAttendeeNotes(e.target.value)} // update this to have the parent handle it.
-                                placeholder="Please give any additonal information needed for dietary restrictions."
+                                placeholder="Please give any additonal information needed for dietary restrictions, or if you need a kids meal, no meal, etc."
                                 rows={3} />
                         </Flex> : null}
                 </Flex>
@@ -153,7 +153,7 @@ const RSVPList = ({
                                     name="dietery_info"
                                     value={childPlusOne!.notes ? childPlusOne!.notes : ''}
                                     onChange={(e) => updatePlusOneNotes(e.target.value)}
-                                    placeholder="Please give any additonal information needed for dietary restrictions."
+                                    placeholder="Please give any additonal information needed for dietary restrictions, or if you need a kids meal, no meal, etc."
                                     rows={3} />
                             </Flex>
 
@@ -183,7 +183,7 @@ const RSVPList = ({
                                 name={`dietery_info_${relatedAttendee.id}`}
                                 value={relatedAttendee.notes ? relatedAttendee.notes : ''}
                                 onChange={(e) => updateRelatedNotes(e.target.value, relatedAttendee.id)} // update this to have the parent handle it.
-                                placeholder="Please give any additonal information needed for dietary restrictions."
+                                placeholder="Please give any additonal information needed for dietary restrictions, or if you need a kids meal, no meal, etc."
                                 rows={3} />
                         </Flex> : null}
                     </Flex>
