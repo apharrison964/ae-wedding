@@ -237,7 +237,7 @@ const RSVP = () => {
 
     useEffect(() => {
         async function getAttendees() {
-            const response = await client.graphql({ query: listAttendees });
+            const response = await client.graphql({ query: listAttendees, variables: { limit: 200 } });
             setAttendeesList(response.data.listAttendees.items)
         };
     
