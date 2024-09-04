@@ -33,7 +33,7 @@ const registry = [
     {
         key: 6,
         linkText: 'Donate - Ulman Foundation',
-        link: 'https://impact.ulmanfoundation.org/fundraiser/5152364',
+        link: 'https://impact.ulmanfoundation.org/fundraiser/5193917',
     }
  ]
 
