@@ -6,34 +6,29 @@ import { Grid, View } from '@aws-amplify/ui-react';
 
 const faqs = [
     {
-        key: 1,
-        question: 'What date should I RSVP by?',
-        answer: 'We will be sending out official invitations this summer - please respond no later than October 1st!',
-    },
-    {
-        key: 2,
-        question: 'Do I RSVP by mail or on the website?',
-        answer: 'When RSVPs start, we will only be accepting them on the website. If you need help, contact eaharrisonwedding2024@gmail.com and we can enter the information for you.',
-    },
-    {
         key: 3,
         question: 'Will the wedding be indoors or outdoors?',
         answer: 'The ceremony will be under a covered, open air barn. If it gets too cold, we will have heaters. The reception will be held in a climate controlled barn that leads onto a patio that will have fire pits, heaters, and a big fireplace.',
     },
     {
-        key: 4,
-        question: 'What is the weather like in the area?',
-        answer: 'It will most likely be on the colder side, but since we are in North Carolina, where the weather can’t make up its mind, there is a potential for warmer weather in the area. About a week before, check your weather apps just to make sure!',
-    },
-    {
         key: 5,
         question: 'Will there be a shuttle to and from the hotel?',
-        answer: 'For guests staying in our room block at the Hyatt Place Chapel Hill/Southern Village, there will be a shuttle that will run twice to get to the venue, and twice to get back. Check back soon for more information on the schedule. For those driving, you can leave your car at the venue and pick it up the next day if need be. There is plenty of parking!',
+        answer: 'For guests staying in our room block at the Hyatt Place Chapel Hill/Southern Village, there will be a shuttle that will run twice to get to the venue, and twice to get back. Departures are at 2:30 pm and 3:00 pm, and pickups are at 9:30 pm and 10:00 pm',
+    },
+    {
+        key: 12,
+        question: 'Is there parking?',
+        answer: 'There is plenty of parking! There is a big gravel area a very short walk from the pavilion (ceremony) and barn (reception). If you need more assistance, you can be dropped off in front of the barn. For those driving, you can leave your car at the venue and pick it up the next day if needed.'
     },
     {
         key: 6,
         question: 'What is the dress code?',
-        answer: 'The dress code is cocktail attire.',
+        answer: 'The dress code is cocktail attire - feel free to bring a jacket and dress in layers, as we will be indoors and outdoors.',
+    },
+    {
+        key: 4,
+        question: 'What will the weather be like?',
+        answer: 'As of a week before the wedding, it looks like it will be sunny with the high be in the mid 50s, and the low in the 30s, but check your weather apps just to make sure!',
     },
     // {
     //     key: 7,
@@ -56,10 +51,20 @@ const faqs = [
         answer: '#HappilyEverHarrison',
     },
     {
+        key: 1,
+        question: 'What date should I RSVP by?',
+        answer: 'We will be sending out official invitations this summer - please respond no later than October 1st!',
+    },
+    {
+        key: 2,
+        question: 'Do I RSVP by mail or on the website?',
+        answer: 'When RSVPs start, we will only be accepting them on the website. If you need help, contact eaharrisonwedding2024@gmail.com and we can enter the information for you.',
+    },
+    {
         key: 11,
         question: 'I have a question not listed, who do I contact?',
         answer: 'Feel free to contact eaharrisonwedding2024@gmail.com for anything not listed here.',
-    }
+    },
  ]
 
 const FAQ = () => {
